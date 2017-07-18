@@ -1,3 +1,3 @@
 # jarts
 
-experiments with gometric js animations, drawings, and sound
+experiments with geometric animations & drawings
