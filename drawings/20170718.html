@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>js-drawing 00/00/00</title>
+        <title>js-drawing 20170718</title>
         <style>
           html,
           body,
           body:after,
           canvas {
             content: "";
-            background: #012;
+            background: red;
             margin: 0;
             position: absolute;
             top: 0;
@@ -18,7 +18,7 @@
           }
 
           body:after {
-            background: linear-gradient(rgba(0,17,34,0) 50%, rgba(0,17,34,.3) 50%) top left/100% 8px;
+            background: linear-gradient(rgba(0,17,34,0) 50%, rgba(0,17,34,.3) 50%) bottom right/100% 5px;
           }
         </style>
     </head>
@@ -26,6 +26,9 @@
     <body>
         <canvas id="c"></canvas>
     </body>
-
-    <script src="drawing.js"></script>
+    <script>
+        let canvas = document.querySelector("canvas");
+        let cx = canvas.getContext("2d");
+    </script>
+    <script src="20170718.js"></script>
 <html>
