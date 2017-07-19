@@ -1,11 +1,28 @@
+/*
+    To-do:
+    - fix mouse move event
+    - make colors change and size based on some other variable
+*/
+
 cx.beginPath();
-// cx.moveTo(100, 100);
-// cx.lineTo(50, 400);
-// cx.lineTo(300, 400);
-// cx.lineTo(400, 50);
-cx.moveTo(50, 10);
-cx.lineTo(10, 70);
-cx.lineTo(250, 70);
-cx.lineTo(210, 10)
-cx.fillStyle = "blue";
-cx.fill();
+
+canvas.style.backgroundColor = 'red';
+
+let fillColor = 'hsl(25, 75%, 43%)';
+
+function drawPolygon(cx, event) {
+    var x = event.clientX;
+    var y = event.clientY;
+
+    cx.moveTo(x, y);
+    cx.lineTo(10, 70);
+    cx.lineTo(100, 70);
+    cx.lineTo(150, 10);
+}
+
+function fillShape(cx) {
+    cx.fillStyle = fillColor;
+    cx.fill();
+}
+
+canvas.addEventListener('onmousemove', drawPolygon(cx, event));
