@@ -1,6 +1,3 @@
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
 let hue = 215;
 let fillColor, bgColor = `hsl(${hue}, 100%, 65%)`;
 
