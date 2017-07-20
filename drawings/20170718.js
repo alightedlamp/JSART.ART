@@ -1,28 +1,49 @@
-/*
-    To-do:
-    - fix mouse move event
-    - make colors change and size based on some other variable
-*/
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
-cx.beginPath();
+let hue = 215;
+let fillColor, bgColor = `hsl(${hue}, 100%, 65%)`;
 
-canvas.style.backgroundColor = 'red';
+canvas.style.backgroundColor = bgColor;
 
-let fillColor = 'hsl(25, 75%, 43%)';
-
-function drawPolygon(cx, event) {
-    var x = event.clientX;
-    var y = event.clientY;
-
-    cx.moveTo(x, y);
-    cx.lineTo(10, 70);
-    cx.lineTo(100, 70);
-    cx.lineTo(150, 10);
+function clearCanvas() {
+    cx.clearRect(0, 0, canvas.width, canvas.height);
+}
+function getRandomCoord() {
+    return Math.floor(Math.random() * 200);
+}
+function getRandomHue() {
+    return Math.floor(Math.random() * 360);
 }
 
-function fillShape(cx) {
+function adjustColorByCoords(hue, x, y) {
+    return `hsl(${hue}, ${x}%, ${y}%)`;
+}
+
+function drawPolygon(e) {
+    let x = e.offsetX;
+    let y = e.offsetY;
+
+    cx.beginPath();
+    cx.moveTo(x, y);
+
+    x+= getRandomCoord();
+    y+= getRandomCoord();
+    cx.lineTo(x, y);
+
+    x-= getRandomCoord();
+    y-= getRandomCoord();
+    cx.lineTo(x, y);
+
+    x+= getRandomCoord();
+    y+= getRandomCoord();
+    cx.lineTo(x, y);
+    clearCanvas();
+
+    fillColor = adjustColorByCoords(getRandomCoord(), 100, 50);
     cx.fillStyle = fillColor;
     cx.fill();
 }
 
-canvas.addEventListener('onmousemove', drawPolygon(cx, event));
+canvas.addEventListener('mousemove', drawPolygon);
+//canvas.addEventListener('click', setInterval(drawPolygon, 100));
