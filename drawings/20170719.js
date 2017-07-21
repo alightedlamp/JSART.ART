@@ -1,3 +1,5 @@
+// 20170719 -- FRUIT STRIPE
+
 function getRandomBrightColor() {
     let hue = Math.floor(Math.random() * 360);
     return `hsl(${hue}, 100%, 50%)`

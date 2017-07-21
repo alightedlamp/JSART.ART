@@ -1,3 +1,5 @@
+// 20170718 -- ORAGAMI BIRDS
+
 let hue = 215;
 let fillColor, bgColor = `hsl(${hue}, 100%, 65%)`;
 
