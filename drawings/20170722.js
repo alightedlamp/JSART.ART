@@ -1,3 +1,5 @@
+// 20170722 -- PIXELISM
+
 function getWidth() {
   if (self.innerWidth) return self.innerWidth;
   if (document.documentElement && document.documentElement.clientWidth) return document.documentElement.clientWidth;
