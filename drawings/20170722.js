@@ -29,14 +29,14 @@ let lastY = 0;
 currentColor = '';
 
 // why audio not playing
-let audioLoop = new Audio('20170710_pawsweat.wav');
+let audioLoop = new Audio('./audio/20170710_pawsweat.wav');
 audioLoop.autoplay = true;
 audioLoop.loop = true;
 
 function setNewOrigin(e) {
     x = e.offsetX;
     y = e.offsetY;
-    cx.moveTo(sx, sy);
+    cx.moveTo(x, y);
 }
 
 setInterval(function() {
