@@ -26,12 +26,8 @@ let brushWidth = 20;
 let lastX = 0;
 let lastY = 0;
 
-currentColor = '';
-
-// why audio not playing
-let audioLoop = new Audio('./audio/20170710_pawsweat.wav');
-audioLoop.autoplay = true;
-audioLoop.loop = true;
+let currentColor = '';
+let lineColor = '';
 
 function setNewOrigin(e) {
     x = e.offsetX;
@@ -57,12 +53,11 @@ setInterval(function() {
     cx.fillRect(x, y, w, h);
 }, 1);
 
-// edit so once click happens, color is set and doesn't change while drawing
 function draw(e) {
     if (!isDrawing) return;
 
     cx.beginPath();
-    cx.strokeStyle = currentColor;
+    cx.strokeStyle = lineColor;
     cx.lineWidth = brushWidth;;
     cx.moveTo(lastX, lastY);
     cx.lineTo(e.offsetX, e.offsetY);
@@ -72,6 +67,7 @@ function draw(e) {
 
 canvas.addEventListener('mousedown', function(e) {
     isDrawing = true;
+    lineColor = currentColor;
     [lastX, lastY] = [e.offsetX, e.offsetY];
     setNewOrigin(e);
 });
