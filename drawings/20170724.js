@@ -1,6 +1,6 @@
-// 20170724
+// 20170724 -- SNAKE
 
-canvas.style.backgroundColor = 'red';
+canvas.style.backgroundColor = 'blue';
 
 function getWidth() {
   if (self.innerWidth) return self.innerWidth;
@@ -25,8 +25,8 @@ let [hue, saturation, lightness] = ['', 75, 50];
 
 let fillColor = '';
 
-cx.moveTo(x, y);
-cx.lineTo(0, 0);
+let barFillHue = 25;
+let [barX, barY, barW, barH] = [0, 0, 100, getHeight()];
 
 const audioLoop = new Audio('../audio/20170710_pawsweat.wav');
 audioLoop.crossOrigin = 'anonymous';
@@ -41,38 +41,41 @@ analyser = ac.createAnalyser();
 analyser.fftSize = 256;
 source.connect(analyser);
 
-renderFrame = ms => {
-    requestAnimationFrame(renderFrame);
+function rectangleBounce() {
+  hue = ac.currentTime;
 
-    const audioData = new Uint8Array(analyser.frequencyBinCount);
-    analyser.getByteFrequencyData(audioData);
-    let len = audioData.length;
+  if (x == 0) directionX = 'right';
+  if (x > (canvas.width - h)) directionX = 'left';
+  if (directionX == 'right') x++;
+  else x--;
 
-    cx.strokeStyle = `hsl(${ms / 300}, 50%, 50%)`;
-    cx.beginPath();
-    for (let i = 0; i < len; i++) {
-        cx.lineTo(i, x);
-    }
-    cx.stroke();
+  if (y == 0) directionY = 'down';
+  if (y > (canvas.height - w)) directionY = 'up';
+  if (directionY == 'up') y--;
+  else y++;
 
-    hue = ac.currentTime;
-
-    if (x == 0) directionX = 'right';
-    if (x > (canvas.width - h)) directionX = 'left';
-    if (directionX == 'right') x++;
-    else x--;
-
-    if (y == 0) directionY = 'down';
-    if (y > (canvas.height - w)) directionY = 'up';
-    if (directionY == 'up') y--;
-    else y++;
-
-    cx.fillStyle = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
-    cx.fillRect(x, y, w, h);
+  cx.fillStyle = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+  cx.fillRect(x, y, w, h);
 }
 
-renderFrame(0);
+renderFrame = ms => {
+  requestAnimationFrame(renderFrame);
+  hue = ac.currentTime / 10;
 
-setInterval(function() {
-    clearCanvas();
-}, 1000)
+  const audioData = new Uint8Array(analyser.frequencyBinCount);
+  analyser.getByteFrequencyData(audioData);
+  let len = audioData.length;
+
+  cx.strokeStyle = `hsl(${hue}, 50%, 50%)`;
+  cx.beginPath();
+  cx.moveTo(x / 50, y / 50);
+  cx.lineWidth = '5';
+  for (let i = 0; i < len; i++) {
+    cx.lineTo(x, i + getHeight());
+  }
+  cx.save();
+  cx.stroke();
+}
+
+setInterval(rectangleBounce, 10)
+//renderFrame();
