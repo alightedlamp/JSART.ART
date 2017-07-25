@@ -19,6 +19,7 @@ function clearCanvas() {
 }
 
 let [x, y] = [getWidth(), getHeight()];
+let [lastX, lastY] = [x, y];
 let [w, h] = [50, 50];
 let [directionX, directionY] = ['left', 'up'];
 let [hue, saturation, lightness] = ['', 75, 50];
@@ -54,13 +55,14 @@ function rectangleBounce() {
   if (directionY == 'up') y--;
   else y++;
 
+  cx.clearRect(lastX, lastY, w, h);
   cx.fillStyle = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
   cx.fillRect(x, y, w, h);
+  [lastX, lastY] = [x, y];
 }
 
-renderFrame = ms => {
-  requestAnimationFrame(renderFrame);
-  hue = ac.currentTime / 10;
+function drawLines(e) {
+  hue = e.offsetX < 360 ? e.offsetX : e.offsetY;
 
   const audioData = new Uint8Array(analyser.frequencyBinCount);
   analyser.getByteFrequencyData(audioData);
@@ -68,14 +70,11 @@ renderFrame = ms => {
 
   cx.strokeStyle = `hsl(${hue}, 50%, 50%)`;
   cx.beginPath();
-  cx.moveTo(x / 50, y / 50);
+  cx.moveTo(e.offsetX, e.offsetY);
   cx.lineWidth = '5';
-  for (let i = 0; i < len; i++) {
-    cx.lineTo(x, i + getHeight());
-  }
-  cx.save();
+  cx.lineTo(x, y);
   cx.stroke();
 }
 
-setInterval(rectangleBounce, 10)
-//renderFrame();
+setInterval(rectangleBounce, 10);
+canvas.addEventListener('mousemove', drawLines)
