@@ -1,4 +1,4 @@
-// 20170724 -- SNAKE
+// 20170724 -- ERASER
 
 canvas.style.backgroundColor = 'blue';
 

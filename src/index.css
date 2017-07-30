@@ -1,0 +1,147 @@
+html,
+body,
+#root {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    background-color: #1424ff;
+    color: white;
+    font-family: "Droid Sans";
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+    font-size: .9em;
+}
+h1 {
+    padding-bottom: 15px;
+    border-bottom: 1px dotted white;
+}
+h2 {
+    font-size: 1.15em;
+    margin-top: 30px;
+    font-weight: 200;
+}
+h3 {
+    font-size: .9em;
+    margin-top: 2em;
+    font-weight: normal;
+    text-transform: uppercase;
+}
+p {
+    font-family: "Noto Serif", serif;
+    line-height: 1.45em;
+}
+.name {
+    text-transform: uppercase;
+}
+.App {
+    position: relative;
+    display: flex;
+    flex-flow: column;
+}
+.Title {
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-flow: row nowrap;
+    align-items: center;
+    width: 100%;
+    height: 3em;
+}
+.title-dot {
+    color: white;
+}
+.title-a {
+    color: red;
+}
+.title-r {
+    color: yellow;
+}
+.title-t {
+    color: cyan;
+}
+.Title .title-bg {
+    background-color: darkblue;
+    padding: 1em;
+    width: 250px;
+    height: 115px;
+    font-style: italic;
+    opacity: .7;
+    box-shadow: 5px 5px 0 0 black;
+}
+.Title .title-text a {
+    position: fixed;
+    color: white;
+    z-index: 99;
+    top: 20px;
+    left: 40px;
+    font-size: 3em;
+}
+
+.Title a,
+.Links a {
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+.Links {
+    position: fixed;
+    left: 275px;
+    top: 20px;
+}
+.Links a {
+    color: darkblue;
+    font-size: 3em;
+    padding: 1.5em;
+}
+.Links a:hover {
+    color: white;
+    transition: .2s;
+}
+.animated-page-wrapper {
+    position: absolute;
+    top: 100px;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.page {
+    margin: 6em 2em;
+}
+.page-info {
+    margin-top: 40px;
+    padding: 2em;
+    width: 700px;
+    margin: 6em 2em;
+    border: 1px dotted black;
+}
+ul.drawings-list {
+    list-style-type: none;
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+}
+ul.drawings-list li {
+    width: 200px;
+    height: 200px;
+    display: inner-block;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    box-shadow: 5px 5px 0 0 darkblue;
+    padding: 1em;
+    margin: 1em;
+}
+canvas {
+    widht: 100%;
+    height: 100%;
+    top: -100px;
+}
+footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: red;
+}
