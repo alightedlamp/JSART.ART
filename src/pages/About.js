@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import AnimatedWrapper from "../modules/AnimatedWrapper";
 
-import BackLink from '../components/BackLink';
-
 class AboutComponent extends Component {
  render() {
   return (

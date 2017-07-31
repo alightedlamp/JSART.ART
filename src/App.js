@@ -71,10 +71,6 @@ class App extends Component {
                  {match && <Drawings {...rest} drawings={this.state.drawings} drawingsMap={this.state.map} />}
                </TransitionGroup>
           )}/>
-          {
-          Object.keys(this.state.map).map((d, i) => {
-            return <Route path={`/drawing/d${data[i].date}`} component={this.state.map[d]} key={`${data[i].date}`}/>
-          })}
           <Route
              path="/about"
              children={({ match, ...rest }) => (

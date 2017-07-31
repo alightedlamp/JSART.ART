@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Route, Link } from "react-router-dom";
 import AnimatedWrapper from "../modules/AnimatedWrapper";
 
-import BackLink from '../components/BackLink';
+import Drawing from '../components/Drawing';
 
 class DrawingsComponent extends Component {
   render() {
@@ -14,9 +14,9 @@ class DrawingsComponent extends Component {
         <div className="page">
           <div className="drawings-list">
             {
-              drawings.map(function(drawing) {
+              drawings.map((drawing) => {
                return(
-                <Link to={`/drawing/d${drawing.date}`} key={drawing.date}>
+                <Link to={`/drawing/${drawing.date}`} key={drawing.date}>
                   <div className="drawing-thumb">
                     <h2>{drawing.date}</h2>
                   </div>
@@ -25,6 +25,10 @@ class DrawingsComponent extends Component {
               })
             }
           </div>
+          {
+          Object.keys(drawingsMap).map((d, i) => {
+            return <Route path={`/drawing/${drawings[i].date}`} render={(props) => (<Drawing drawingPkg={drawingsMap[d]} drawingInfo={drawings[i]} {...props} />)} key={`${drawings[i].date}`}/>
+          })}
         </div>
       </div>
     )
