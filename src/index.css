@@ -6,21 +6,22 @@ body,
     margin: 0;
     background-color: #1424ff;
     color: white;
-    font-family: "Droid Sans";
 }
 body {
     margin: 0;
     padding: 0;
     font-family: sans-serif;
-    font-size: .9em;
 }
-h1 {
-    padding-bottom: 15px;
-    border-bottom: 1px dotted white;
+h1, h2, h3 {
+    font-weight: normal;
+    font-family: 'Space Mono', monospace;
 }
+h1 {}
 h2 {
     font-size: 1.15em;
-    margin-top: 30px;
+    margin: 0;
+    text-align: center;
+    color: aqua;
     font-weight: 200;
 }
 h3 {
@@ -30,7 +31,8 @@ h3 {
     text-transform: uppercase;
 }
 p {
-    font-family: "Noto Serif", serif;
+    font-family: "Droid Sans", sans-serif;
+    font-size: 1.05em;
     line-height: 1.45em;
 }
 .name {
@@ -41,15 +43,17 @@ p {
     display: flex;
     flex-flow: column;
 }
-.Title {
+.TopBar {
     position: fixed;
-    top: 0;
-    left: 0;
+    top: 50px;
+    left: 50px;
+    font-family: "Space Mono";
+}
+.Title {
+    width: 100%;
     display: flex;
     flex-flow: row nowrap;
     align-items: center;
-    width: 100%;
-    height: 3em;
 }
 .title-dot {
     color: white;
@@ -66,8 +70,8 @@ p {
 .Title .title-bg {
     background-color: darkblue;
     padding: 1em;
-    width: 250px;
-    height: 115px;
+    width: 200px;
+    height: 50px;
     font-style: italic;
     opacity: .7;
     box-shadow: 5px 5px 0 0 black;
@@ -76,9 +80,15 @@ p {
     position: fixed;
     color: white;
     z-index: 99;
-    top: 20px;
-    left: 40px;
-    font-size: 3em;
+    top: 38px;
+    left: 65px;
+    font-size: 1.15em;
+    text-decoration: none;
+}
+.Title .title-text a:hover {
+    font-style: italic;
+    left: 60px;
+    traisition: .2s;
 }
 
 .Title a,
@@ -89,17 +99,21 @@ p {
 }
 .Links {
     position: fixed;
-    left: 275px;
-    top: 20px;
+    left: 350px;
+    top: 60px;
+    font-size: 2.4em;
 }
 .Links a {
+    margin-right: 50px;
     color: darkblue;
-    font-size: 3em;
-    padding: 1.5em;
+    border-bottom: 5px dotted darkblue;
 }
 .Links a:hover {
+    /*left: 345px;*/
     color: white;
     transition: .2s;
+    font-style: italic;
+    border-bottom: 5px dotted yellow;
 }
 .animated-page-wrapper {
     position: absolute;
@@ -109,30 +123,41 @@ p {
     height: 100%;
 }
 .page {
-    margin: 6em 2em;
+    margin: 50px 0 0 50px;
 }
 .page-info {
     margin-top: 40px;
     padding: 2em;
-    width: 700px;
-    margin: 6em 2em;
-    border: 1px dotted black;
+    width: 600px;
+    margin: 100px 0 0 50px;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    box-shadow: 5px 5px 0 0 darkblue;
 }
-ul.drawings-list {
-    list-style-type: none;
+div.drawings-list {
     display: flex;
     flex-flow: row wrap;
     align-items: center;
 }
-ul.drawings-list li {
-    width: 200px;
-    height: 200px;
+div.drawings-list .drawing-thumb {
+    width: 150px;
+    height: 150px;
     display: inner-block;
-    border-top: 1px solid black;
-    border-left: 1px solid black;
+    border-top: 1px solid darkblue;
+    border-left: 1px solid darkblue;
     box-shadow: 5px 5px 0 0 darkblue;
     padding: 1em;
-    margin: 1em;
+    margin: 50px 50px 0 0;
+}
+div.drawings-list .drawing-thumb:hover {
+    box-shadow: 5px 5px 0 0 aqua;
+    border-top: 1px solid aqua;
+    border-left: 1px solid aqua;
+    transition: .2s;
+}
+div.drawings-list .drawing-thumb:hover h2 {
+    padding-bottom: .5em;
+    border-bottom: 3px dotted aqua;
 }
 canvas {
     widht: 100%;
