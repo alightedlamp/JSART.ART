@@ -2,13 +2,20 @@
 import React, { Component } from 'react';
 
 import Drawing from '../components/Drawing';
+import BackLink from '../components/BackLink';
 
-import getHeight from './modules/getHeight';
-import getWidth from './modules/getWidth';
-import clearCanvas from './modules/clearCanvas';
+import getHeight from '../modules/getHeight';
+import getWidth from '../modules/getWidth';
+import clearCanvas from '../modules/clearCanvas';
 
 class d20170724 extends Component {
-  render() {
+  componentDidMount() {
+    console.log('drawing loaded');
+    const canvas = document.querySelector("canvas");
+    const cx = canvas.getContext("2d");
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
     canvas.style.backgroundColor = 'blue';
 
     let [x, y] = [getWidth(), getHeight()];
@@ -19,9 +26,6 @@ class d20170724 extends Component {
 
     let fillColor = '';
 
-    let barFillHue = 25;
-    let [barX, barY, barW, barH] = [0, 0, 100, getHeight()];
-
     const audioLoop = new Audio('../audio/20170710_pawsweat.wav');
     audioLoop.crossOrigin = 'anonymous';
     audioLoop.autoplay = true;
@@ -31,7 +35,7 @@ class d20170724 extends Component {
     const source = ac.createMediaElementSource(audioLoop);
     source.connect(ac.destination);
 
-    analyser = ac.createAnalyser();
+    const analyser = ac.createAnalyser();
     analyser.fftSize = 256;
     source.connect(analyser);
 
@@ -70,10 +74,14 @@ class d20170724 extends Component {
     }
 
     setInterval(rectangleBounce, 10);
-    canvas.addEventListener('mousemove', drawLines)
+    canvas.addEventListener('mousemove', drawLines);
+  }
 
+  render() {
     return(
-      <Drawing />
+      <div>
+        <Drawing />
+      </div>
     )
   }
 }

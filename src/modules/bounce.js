@@ -26,3 +26,5 @@ function bounce(shape, hue, coords, currentDirection, dimensions) {
 
   [lastX, lastY] = [x, y];
 }
+
+export default bounce;

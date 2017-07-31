@@ -5,4 +5,4 @@ const getRandomColor = function() {
     return `hsl(${hue}, ${saturation}%, ${lightness})`
 }
 
-module.exports = getRandomColor;
+export default getRandomColor;

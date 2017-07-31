@@ -1,7 +1,7 @@
 const getWidth = function() {
-  if (self.innerWidth) return self.innerWidth;
+  if (window.innerWidth) return window.innerWidth;
   if (document.documentElement && document.documentElement.clientWidth) return document.documentElement.clientWidth;
   if (document.body) return document.body.clientWidth;
 }
 
-module.exports = getWidth;
+export default getWidth;

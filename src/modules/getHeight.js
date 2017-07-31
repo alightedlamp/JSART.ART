@@ -1,7 +1,7 @@
-const getHeight function() {
-  if (self.innerHeight) return self.innerHeight;
+const getHeight = function() {
+  if (window.innerHeight) return window.innerHeight;
   if (document.documentElement && document.documentElement.clientHeight) return document.documentElement.clientHeight;
   if (document.body) return document.body.clientHeight;
 }
 
-module.exports = getHeight;
+export default getHeight;

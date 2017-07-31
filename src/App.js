@@ -8,6 +8,10 @@ import About from './pages/About';
 import Footer from './components/Footer';
 
 import data from './drawings/DRAWINGS_DATA';
+import d20170718 from './drawings/d20170718';
+import d20170719 from './drawings/d20170719';
+import d20170722 from './drawings/d20170722';
+import d20170724 from './drawings/d20170724';
 
 const firstChild = props => {
   const childrenArray = React.Children.toArray(props.children);
@@ -17,8 +21,18 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      drawings: data
+      drawings: data,
+      map: {}
     }
+  }
+  componentDidMount() {
+    const DRAWINGS_MAP = {
+      'd20170724': d20170724,
+      'd20170722': d20170722,
+      'd20170719': d20170719,
+      'd20170718': d20170718
+    }
+    this.setState({ map: DRAWINGS_MAP });
   }
   render() {
     return (
@@ -54,9 +68,13 @@ class App extends Component {
              path="/drawings"
              children={({ match, ...rest }) => (
                <TransitionGroup component={firstChild}>
-                 {match && <Drawings {...rest} drawings={this.state.drawings} />}
+                 {match && <Drawings {...rest} drawings={this.state.drawings} drawingsMap={this.state.map} />}
                </TransitionGroup>
           )}/>
+          {
+          Object.keys(this.state.map).map((d, i) => {
+            return <Route path={`/drawing/d${data[i].date}`} component={this.state.map[d]} key={`${data[i].date}`}/>
+          })}
           <Route
              path="/about"
              children={({ match, ...rest }) => (

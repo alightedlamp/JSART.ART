@@ -21,7 +21,7 @@ h2 {
     font-size: 1.15em;
     margin: 0;
     text-align: center;
-    color: aqua;
+    color: darkblue;
     font-weight: 200;
 }
 h3 {
@@ -35,6 +35,11 @@ p {
     font-size: 1.05em;
     line-height: 1.45em;
 }
+a:link,
+a:visited,
+a:active {
+    text-decoration: none;
+}
 .name {
     text-transform: uppercase;
 }
@@ -47,6 +52,7 @@ p {
     position: fixed;
     top: 50px;
     left: 50px;
+    z-index: 99;
     font-family: "Space Mono";
 }
 .Title {
@@ -115,18 +121,48 @@ p {
     font-style: italic;
     border-bottom: 5px dotted yellow;
 }
-.animated-page-wrapper {
+.back-link {
     position: absolute;
-    top: 100px;
-    left: 0;
+    z-index: 99;
+    top: 150px;
+    left: 50px;
+    color: white;
+    font-size: 2em;
+}
+.back-link a {
+    cursor: pointer;
+}
+.back-link a:hover {
+    color: aqua;
+}
+.animated-page-wrapper {
     width: 100%;
     height: 100%;
 }
+.page,
+.page-info,
+.drawing {
+    position: absolute;
+}
+.page,
+.page-info {
+    top: 100px;
+}
 .page {
+    top: 100px;
     margin: 50px 0 0 50px;
 }
+.drawing {
+    top: -100px;
+    margin: 0;
+    padding: 0;
+}
+.drawing canvas {
+    height: 100%;
+    width: 100%;
+}
 .page-info {
-    margin-top: 40px;
+    top: 100px;
     padding: 2em;
     width: 600px;
     margin: 100px 0 0 50px;
@@ -157,12 +193,9 @@ div.drawings-list .drawing-thumb:hover {
 }
 div.drawings-list .drawing-thumb:hover h2 {
     padding-bottom: .5em;
+    color: aqua;
     border-bottom: 3px dotted aqua;
-}
-canvas {
-    widht: 100%;
-    height: 100%;
-    top: -100px;
+    transition: .2s;
 }
 footer {
     position: absolute;

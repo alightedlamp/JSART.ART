@@ -10,4 +10,4 @@ const draw = function(e, brushWidth) {
     [lastX, lastY] = [e.offsetX, e.offsetY];
 }
 
-module.exports = draw;
+export default draw;
