@@ -1,6 +1,6 @@
-import React, { Component } from "react";
-import { Route, Link } from "react-router-dom";
-import AnimatedWrapper from "../modules/AnimatedWrapper";
+import React, { Component } from 'react';
+import { Route, Link } from 'react-router-dom';
+import AnimatedWrapper from '../modules/AnimatedWrapper';
 
 import Drawing from '../components/Drawing';
 
@@ -25,10 +25,6 @@ class DrawingsComponent extends Component {
               })
             }
           </div>
-          {
-          Object.keys(drawingsMap).map((d, i) => {
-            return <Route path={`/drawing/${drawings[i].date}`} render={(props) => (<Drawing drawingPkg={drawingsMap[d]} drawingInfo={drawings[i]} {...props} />)} key={`${drawings[i].date}`}/>
-          })}
         </div>
       </div>
     )

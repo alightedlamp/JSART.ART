@@ -5,8 +5,8 @@ import clearCanvas from '../modules/clearCanvas';
 
 const d20170724 = function() {
   console.log('drawing loaded');
-  const canvas = document.querySelector("canvas");
-  const cx = canvas.getContext("2d");
+  const canvas = document.querySelector('canvas');
+  const cx = canvas.getContext('2d');
 
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
@@ -36,14 +36,14 @@ const d20170724 = function() {
   function rectangleBounce() {
     hue = ac.currentTime;
 
-    if (x == 0) directionX = 'right';
+    if (x === 0) directionX = 'right';
     if (x > (canvas.width - h)) directionX = 'left';
-    if (directionX == 'right') x++;
+    if (directionX === 'right') x++;
     else x--;
 
-    if (y == 0) directionY = 'down';
+    if (y === 0) directionY = 'down';
     if (y > (canvas.height - w)) directionY = 'up';
-    if (directionY == 'up') y--;
+    if (directionY === 'up') y--;
     else y++;
 
     cx.clearRect(lastX, lastY, w, h);
