@@ -153,13 +153,20 @@ a:active {
     margin: 50px 0 0 50px;
 }
 .drawing {
-    top: -10px;
+    /*top: -10px;*/
     margin: 0;
     padding: 0;
 }
 .drawing canvas {
     height: 100%;
     width: 100%;
+}
+.drawing-title {
+    position: absolute;
+    top: 200px;
+    left: 75px;
+    z-index: 99;
+    color: white;
 }
 .page-info {
     top: 100px;

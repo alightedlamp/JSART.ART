@@ -18,13 +18,16 @@ import d20170718 from './drawings/d20170718';
 import d20170719 from './drawings/d20170719';
 import d20170722 from './drawings/d20170722';
 import d20170724 from './drawings/d20170724';
+import d20170803 from './drawings/d20170803';
 
 const DRAWINGS_MAP = {
+    'd20170803': d20170803,
     'd20170724': d20170724,
     'd20170722': d20170722,
     'd20170719': d20170719,
     'd20170718': d20170718
 }
+const recentDrawing = DRAWINGS_MAP[Object.keys(DRAWINGS_MAP)[0]];
 const firstChild = props => {
     const childrenArray = React.Children.toArray(props.children);
     return childrenArray[0] || null;
@@ -38,7 +41,7 @@ ReactDOM.render(
               path="/"
               children={({ match, ...rest }) => (
                 <TransitionGroup component={firstChild}>
-                  {match && <Home {...rest} />}
+                  {match && <Home {...rest} drawkingPkg={recentDrawing} drawingInfo={data[0]} />}
                 </TransitionGroup>
             )}/>
             <Route

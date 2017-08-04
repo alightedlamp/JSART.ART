@@ -4,7 +4,6 @@ import getWidth from '../modules/getWidth';
 import clearCanvas from '../modules/clearCanvas';
 
 const d20170724 = function() {
-  console.log('drawing loaded');
   const canvas = document.querySelector('canvas');
   const cx = canvas.getContext('2d');
 

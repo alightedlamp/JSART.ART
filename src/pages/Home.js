@@ -4,13 +4,16 @@ import AnimatedWrapper from "../modules/AnimatedWrapper";
 import Drawing from '../components/Drawing';
 
 class HomeComponent extends Component {
- render() {
-  return (
-   <div className="page">
-    <Drawing />
-   </div>
-  )
- }
+    componentDidMount() {
+        this.drawing = this.props.drawingPkg;
+        this.drawingInfo = this.props.drawingInfo;
+    }
+    render() {
+        return (
+            <Drawing drawingPkg={this.recentDrawing} drawingInfo={this.recentDrawingInfo} />
+        )
+    }
 }
+
 const Home = AnimatedWrapper(HomeComponent);
 export default Home;
