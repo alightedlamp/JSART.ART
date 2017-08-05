@@ -1,5 +1,8 @@
 // 20170803
-const d20170803 = function() {
+import drawLine from '../modules/drawLine';
+import getNewCoords from '../modules/getNewCoords';
+
+const d20170803 = () => {
     const canvas = document.querySelector('canvas');
     const cx = canvas.getContext('2d');
 
@@ -7,9 +10,15 @@ const d20170803 = function() {
     canvas.height = window.innerHeight;
     canvas.style.backgroundColor = 'red';
 
-    const [w, h] = [window.innerWidth, window.innerHeight];
-    let [x, y] = [w / 2, h / 2];
-    let direction = '';
+    const size = { w: window.innerWidth, h: window.innerHeight };
+    let coords = { x: size.w / 2, y: size.h / 2 };
+    let directionChoice = '';
+    let directions = { dX: 'right', dY: ''};
+
+    let speed = 30;
+    let hue = 240;
+    let color = `hsl(${hue}, 50%, 75%)`;
+    let isDrawing = false;
 
     const keys = {
         37: 'left',
@@ -18,23 +27,28 @@ const d20170803 = function() {
         40: 'down'
     }
 
-    cx.strokeStyle = 'lightgreen';
     cx.beginPath();
-    cx.moveTo(w / 2, h / 2);
+    cx.moveTo(coords.x, coords.y);
 
-    function changeDirection(e) {
-        // change to handle negatives
-        if (keys[e.keyCode] === 'up') y--;
-        if (keys[e.keyCode] === 'down') y++;
-        if (keys[e.keyCode] === 'right') x++;
-        if (keys[e.keyCode] === 'left') x--;
-
-        cx.lineWidth = '5';
-        cx.lineTo(x, y);
-        cx.stroke();
+    const renderFrame = (ms) => {
+      requestAnimationFrame(renderFrame);
+      // [directions, coords] = getNewCoords(size, coords, directions, directionChoice);
+      drawLine(cx, coords, color, speed);
     }
 
-    window.addEventListener('keydown', changeDirection, true);
+    function handler(e) {
+        if (keys[e.keyCode] === 'up') directionChoice = 'up';
+        if (keys[e.keyCode] === 'down') directionChoice = 'down';
+        if (keys[e.keyCode] === 'right') directionChoice = 'right';
+        if (keys[e.keyCode] === 'left') directionChoice = 'left';
+
+        if (!isDrawing && directionChoice) {
+          isDrawing = true;
+          renderFrame(0);
+        }
+    }
+
+    window.addEventListener('keydown', handler, true);
 }
 
 export default d20170803;

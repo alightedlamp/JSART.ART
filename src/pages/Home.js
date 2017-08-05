@@ -10,7 +10,7 @@ class HomeComponent extends Component {
     }
     render() {
         return (
-            <Drawing drawingPkg={this.recentDrawing} drawingInfo={this.recentDrawingInfo} />
+            <Drawing drawingPkg={this.drawing} drawingInfo={this.drawingInfo} />
         )
     }
 }
