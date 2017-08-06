@@ -1,19 +1,14 @@
 import React, { Component } from "react";
-import AnimatedWrapper from "../modules/AnimatedWrapper";
+import * as Animated from "animated/lib/targets/react-dom";
 
 import Drawing from '../components/Drawing';
 
-class HomeComponent extends Component {
-    componentDidMount() {
-        this.drawing = this.props.drawingPkg;
-        this.drawingInfo = this.props.drawingInfo;
-    }
+class Home extends Component {
     render() {
         return (
-            <Drawing drawingPkg={this.drawing} drawingInfo={this.drawingInfo} />
+          <div></div>
         )
     }
 }
 
-const Home = AnimatedWrapper(HomeComponent);
 export default Home;

@@ -15,7 +15,7 @@ const d20170803 = () => {
     const size = { w: window.innerWidth, h: window.innerHeight };
     let coords = { x: size.w / 2, y: size.h / 2 };
     let direction = 'right';
-    let speed = 10;
+    let speed = 5;
     let hue = 240;
     let brushSize = 7;
     let isDrawing = true;
@@ -43,7 +43,7 @@ const d20170803 = () => {
 
     const handler = (e) => {
       if (directionKeys.hasOwnProperty(e.keyCode)) {
-        setBg();
+        // setBg();
         direction = directionKeys[e.keyCode];
       }
       if (brushSizeKeys.hasOwnProperty(e.keyCode)) {

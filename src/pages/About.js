@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import AnimatedWrapper from "../modules/AnimatedWrapper";
+import * as Animated from "animated/lib/targets/react-dom";
 
-class AboutComponent extends Component {
+class About extends Component {
  render() {
   return (
     <div>
@@ -13,5 +13,5 @@ class AboutComponent extends Component {
   )
  }
 }
-const About = AnimatedWrapper(AboutComponent);
+
 export default About;

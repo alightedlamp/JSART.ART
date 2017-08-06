@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, matchPath } from 'react-router-dom';
 import TransitionGroup from 'react-transition-group/TransitionGroup';
+import AnimatedSwitch from "./utils/AnimatedSwitch";
+import { firstChild } from "./utils/helpers";
 
 import TopBar from './components/TopBar';
 import Footer from './components/Footer';
@@ -11,68 +13,52 @@ import About from './pages/About';
 
 import Drawing from './components/Drawing';
 
-import data from './drawings/data';
-import d20170718 from './drawings/d20170718';
-import d20170719 from './drawings/d20170719';
-import d20170722 from './drawings/d20170722';
-import d20170724 from './drawings/d20170724';
-import d20170803 from './drawings/d20170803';
-
-const DRAWINGS_MAP = {
-    'd20170803': d20170803,
-    'd20170724': d20170724,
-    'd20170722': d20170722,
-    'd20170719': d20170719,
-    'd20170718': d20170718
-}
-const recentDrawing = DRAWINGS_MAP[Object.keys(DRAWINGS_MAP)[0]];
-const firstChild = props => {
-    const childrenArray = React.Children.toArray(props.children);
-    return childrenArray[0] || null;
-}
+import data from './data';
 
 class App extends Component {
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.state = {
-      data: {},
-      drawing: {}
+      drawings: []
     };
-
-    this.data = data;
-    this.drawings = DRAWINGS_MAP;
+  }
+  componentDidMount() {
+    this.setState({
+      drawings: data
+    });
   }
   render() {
     return (
       <div className="App">
         <TopBar />
-        <Route
-          exact
-          path="/"
-          children={({ match, ...rest }) => (
-            <TransitionGroup component={firstChild}>
-              {match && <Home {...rest} drawkingPkg={recentDrawing} drawingInfo={data[0]} />}
-            </TransitionGroup>
+        <Route render={({ location }) => (
+          <TransitionGroup component="main">
+            <AnimatedSwitch key={location.key} location={location}>
+              <Route exact path="/" component={Home}/>
+              <Route
+                exact
+                path="/drawings"
+                render={props => (
+                  <DrawingsList {...props} drawings={this.state.drawings}/>
+                )}
+              />
+              <Route
+                path="/drawing/:date"
+                render={props => (
+                  <Drawing {...props} drawings={this.state.drawings}/>
+                )}
+              />
+              <Route
+                exact
+                path="/about"
+                render={props => (
+                  <About {...props} />
+                )}
+              />
+            </AnimatedSwitch>
+          </TransitionGroup>
         )}/>
-        <Route
-          path="/drawings"
-          children={({ match, ...rest }) => (
-            <TransitionGroup component={firstChild}>
-              {match && <DrawingsList {...rest} data={this.data} />}
-            </TransitionGroup>
-        )}/>
-        {Object.keys(this.drawings).map((d, i) => {
-            return <Route path={`/drawing/${this.data[i].date}`} children={({ match, ...rest }) => (<TransitionGroup component={firstChild}>{match && <Drawing data={this.data[i]} drawing={this.drawings[d]} key={`${this.data[i].date}`}/>}</TransitionGroup>)} key={`${this.data[i].date}`}/>
-        })}
-        <Route
-          path="/about"
-          children={({ match, ...rest }) => (
-            <TransitionGroup component={firstChild}>
-              {match && <About {...rest} />}
-            </TransitionGroup>
-        )}/>
-        <Footer />
       </div>
     );
   }
