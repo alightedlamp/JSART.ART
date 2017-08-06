@@ -1,43 +1,42 @@
-const getNewCoords = (size, coords, speed, directions, directionChoice) => {
+const getNewCoords = (size, coords, speed, brushSize, direction) => {
   let x = coords.x;
   let y = coords.y;
-  let dX = directions.dX;
-  let dY = directions.dY;
 
-  // handle direction change
-  switch (directionChoice) {
+  switch (direction) {
     case 'right':
       x += speed;
-      dX = 'right';
       break;
     case 'left':
       x -= speed;
-      dX = 'left';
       break;
     case 'down':
       y += speed;
-      dY = 'down';
       break;
     case 'up':
       y -= speed;
-      dY = 'up';
       break;
   }
 
   // handle bounces
-  // if (x == 0) dX = 'right';
-  // if (x > size.w) dX = 'left';
-  // if (dX == 'right') x++;
-  // else x--;
-  //
-  // if (y == 0) dY = 'down';
-  // if (y > size.h) dY = 'up';
-  // if (dY == 'up') y--;
-  // else y++;
+  if (x > size.w - brushSize) {
+    direction = 'left';
+    x -= speed;
+  }
+  if (x <= 0 - brushSize) {
+    direction == 'right';
+    x += speed;
+  }
+  if (y > size.h - brushSize) {
+    direction = 'up';
+    y -= speed;
+  }
+  if (y <= 0 - brushSize) {
+    direction = 'down';
+    y += speed;
+  }
 
-  directions = { dX, dY };
   coords = { x, y };
-  return [directions, coords];
+  return coords;
 }
 
 export default getNewCoords;

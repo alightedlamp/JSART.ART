@@ -1,8 +1,8 @@
 const data = [
     {
-        title: 'untitled',
+        title: 'Snake Game',
         date: '20170803',
-        description: 'game',
+        description: 'Create a drawing using arrow keys like the classic snake game',
         source: 'd20170803'
     },
     {
