@@ -19,10 +19,6 @@ const d20170718 = function() {
     function getRandomCoord() {
         return Math.floor(Math.random() * 200);
     }
-    function getRandomHue() {
-        return Math.floor(Math.random() * 360);
-    }
-
     function drawLine(x, y) {
         x+= getRandomCoord();
         y+= getRandomCoord();
@@ -33,7 +29,6 @@ const d20170718 = function() {
         cx.fillStyle = fillColor;
         cx.fill();
     }
-
     function adjustColorByCoords(hue, x, y) {
         return `hsl(${hue}, ${x}%, ${y}%)`;
     }

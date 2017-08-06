@@ -1,6 +1,4 @@
 // 20170803
-import React from 'react';
-
 import drawLine from '../modules/drawLine';
 import getNewCoords from '../modules/getNewCoords';
 import getRandomColor from '../modules/getRandomColor';
@@ -20,7 +18,6 @@ const d20170803 = () => {
     let speed = 10;
     let hue = 240;
     let brushSize = 7;
-    let color = `hsl(${hue}, 50%, 75%)`;
     let isDrawing = true;
     let frameCount = 0;
 
@@ -38,7 +35,7 @@ const d20170803 = () => {
         coords = getNewCoords(size, coords, speed, brushSize, direction);
       }
       frameCount++;
-      if (frameCount % 5 == 0) {
+      if (frameCount % 5 === 0) {
         hue = getRandomColor(360, true);
       }
       drawLine(cx, coords, hue, brushSize, frameCount);
@@ -71,31 +68,6 @@ const d20170803 = () => {
 
     start();
     window.addEventListener('keydown', handler, true);
-
-    // add instructions modal (make this reusable component)
-    const instructionsStyle = {
-      'position': 'absolute',
-      'zIndex': 99,
-      'backgroundColor': 'white',
-      'width': 400,
-      'height': 300,
-      'left': `${size.w - 200}`,
-      'right': `${size.h - 200}`
-    }
-    const instructions = (
-      <div style={instructionsStyle}>
-        <ul>
-          <li>Number keys 1 - 9 increase speed</li>
-          <li>+ / - adjust line size</li>
-          <li>Arrow keys change direction</li>
-        </ul>
-        <p>Good luck.</p>
-      </div>
-    )
-    // put the modal in the DOMathon
-    setTimeout(function() {
-      // remove modal
-    }, 5000);
 }
 
 export default d20170803;

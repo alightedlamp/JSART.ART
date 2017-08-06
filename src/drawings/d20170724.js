@@ -1,7 +1,6 @@
 // 20170724 -- ERASER
 import getHeight from '../modules/getHeight';
 import getWidth from '../modules/getWidth';
-import clearCanvas from '../modules/clearCanvas';
 
 const d20170724 = function() {
   const canvas = document.querySelector('canvas');
@@ -16,8 +15,6 @@ const d20170724 = function() {
   let [w, h] = [50, 50];
   let [directionX, directionY] = ['left', 'up'];
   let [hue, saturation, lightness] = ['', 75, 50];
-
-  let fillColor = '';
 
   const audioLoop = new Audio('../audio/20170710_pawsweat.wav');
   audioLoop.crossOrigin = 'anonymous';
@@ -56,7 +53,6 @@ const d20170724 = function() {
 
     const audioData = new Uint8Array(analyser.frequencyBinCount);
     analyser.getByteFrequencyData(audioData);
-    let len = audioData.length;
 
     cx.strokeStyle = `hsl(${hue}, 50%, 50%)`;
     cx.beginPath();

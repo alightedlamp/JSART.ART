@@ -1,13 +1,10 @@
 import React, { Component } from 'react';
-import { Route, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import AnimatedWrapper from '../modules/AnimatedWrapper';
-
-import Drawing from '../components/Drawing';
 
 class DrawingsComponent extends Component {
   render() {
     const drawings = this.props.drawings;
-    const drawingsMap = this.props.drawingsMap;
 
     return(
       <div>

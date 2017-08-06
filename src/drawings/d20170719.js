@@ -1,8 +1,4 @@
 // 20170719 -- FRUIT STRIPE
-import React, { Component } from 'react';
-
-import Drawing from '../components/Drawing';
-
 const d20170719 = function() {
     const canvas = document.querySelector("canvas");
     const cx = canvas.getContext("2d");
@@ -17,9 +13,6 @@ const d20170719 = function() {
         let hue = Math.floor(Math.random() * 360);
         return `hsl(${hue}, 100%, 25%)`
     }
-
-    const W = canvas.width;
-    const H = canvas.height;
 
     canvas.style.backgroundColor =  '#012';
 

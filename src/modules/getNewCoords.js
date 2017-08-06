@@ -15,6 +15,9 @@ const getNewCoords = (size, coords, speed, brushSize, direction) => {
     case 'up':
       y -= speed;
       break;
+    default:
+      x++;
+      break;
   }
 
   // handle bounces
@@ -23,7 +26,7 @@ const getNewCoords = (size, coords, speed, brushSize, direction) => {
     x -= speed;
   }
   if (x <= 0 - brushSize) {
-    direction == 'right';
+    direction = 'right';
     x += speed;
   }
   if (y > size.h - brushSize) {
