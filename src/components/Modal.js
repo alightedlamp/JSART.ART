@@ -1,5 +1,5 @@
 export default Modal = () => {
-  const instructionsStyle = {
+  const modalStyle = {
     'position': 'absolute',
     'zIndex': 99,
     'backgroundColor': 'white',
@@ -9,7 +9,7 @@ export default Modal = () => {
     'right': `${size.h - 200}`
   }
   const instructions = (
-    <div style={instructionsStyle}>
+    <div style={modalStyle}>
       <ul>
         <li>Number keys 1 - 9 increase speed</li>
         <li>+ / - adjust line size</li>

@@ -2,16 +2,19 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import AnimatedWrapper from '../modules/AnimatedWrapper';
 
+// import Drawing from '../components/Drawing';
+
 class DrawingsComponent extends Component {
   render() {
-    const drawings = this.props.drawings;
+    // const { data, drawings } = this.props;
+    const data = this.props.data;
 
     return(
       <div>
         <div className="page">
           <div className="drawings-list">
             {
-              drawings.map((drawing) => {
+              data.map((drawing, idx) => {
                return(
                 <Link to={`/drawing/${drawing.date}`} key={drawing.date}>
                   <div className="drawing-thumb">
