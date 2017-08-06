@@ -25,31 +25,12 @@ const d20170803 = () => {
     let frameCount = 0;
 
     const setBg = () => {
-      // make this fade to new color
-      canvas.style.backgroundColor = `hsl(${Math.floor(Math.random() * 360)}, 75%, 50%)`;
+      canvas.style.backgroundColor = `hsl(${getRandomColor(360, true)}, 75%, 50%)`;
     }
 
-    const directionKeys = {
-      37: 'left',
-      38: 'up',
-      39: 'right',
-      40: 'down'
-    }
-    const speedKeys = {
-      49: 2,
-      50: 4,
-      51: 6,
-      52: 8,
-      53: 10,
-      54: 12,
-      55: 14,
-      56: 16,
-      57: 18,
-    }
-    const brushSizeKeys = {
-      189: 'decrease',
-      187: 'increase'
-    }
+    const directionKeys = { 37: 'left', 38: 'up', 39: 'right', 40: 'down' }
+    const speedKeys = { 49: 2, 50: 4, 51: 6, 52: 8, 53: 10, 54: 12, 55: 14, 56: 16, 57: 18 }
+    const brushSizeKeys = { 189: 'decrease', 187: 'increase' }
 
     const renderFrame = (ms) => {
       requestAnimationFrame(renderFrame);
@@ -57,16 +38,15 @@ const d20170803 = () => {
         coords = getNewCoords(size, coords, speed, brushSize, direction);
       }
       frameCount++;
-      color = getRandomColor();
       if (frameCount % 5 == 0) {
-        hue = Math.floor(Math.random() * 360);
+        hue = getRandomColor(360, true);
       }
       drawLine(cx, coords, hue, brushSize, frameCount);
     }
 
     const handler = (e) => {
       if (directionKeys.hasOwnProperty(e.keyCode)) {
-        // setBg();
+        setBg();
         direction = directionKeys[e.keyCode];
       }
       if (brushSizeKeys.hasOwnProperty(e.keyCode)) {

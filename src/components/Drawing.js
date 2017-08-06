@@ -9,8 +9,6 @@ class DrawingComponent extends Component {
     componentDidMount() {
         this.drawing = this.props.drawingPkg;
         this.drawingInfo = this.props.drawingInfo;
-        console.log(this.drawing);
-        console.log(this.drawingInfo);
 
         document.documentElement.style.overflow = 'hidden';
         document.body.scroll = "no";
