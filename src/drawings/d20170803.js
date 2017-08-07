@@ -2,7 +2,6 @@
 import drawLine from '../modules/drawLine';
 import getNewCoords from '../modules/getNewCoords';
 import getRandomColor from '../modules/getRandomColor';
-import clearCanvas from '../modules/clearCanvas';
 
 const d20170803 = () => {
     const canvas = document.querySelector('canvas');
@@ -53,11 +52,6 @@ const d20170803 = () => {
         speed = speedKeys[e.keyCode];
       }
       if (e.keyCode === 32) isDrawing = !isDrawing;
-      // clear canvas - doesn't restart yet
-      if (e.keyCode === 27) {
-        clearCanvas(cx, canvas);
-        start();
-      }
     }
 
     const start = () => {

@@ -206,18 +206,48 @@ div.drawings-list .drawing-thumb:hover h2 {
 }
 div.info-pane {
   position: absolute;
+  color: darkblue;
   right: 10px;
   bottom: 20px;
   width: 200px;
   z-index: 99;
   padding: .5em;
   font-size: .8em;
-  line-height: 1em;
+  line-height: 1.25em;
   background-color: aqua;
   box-shadow: 5px 5px 0 0 darkblue;
 }
+div.info-pane p,
+div.info-pane li,
+div.info-pane h4,
+div.controls {
+  font-family: 'Space Mono', sans-serif;
+}
 div.info-pane p {
   margin: 0;
+}
+div.info-pane p.description {
+  margin: .75em 0 1.25em 0;
+}
+.instructions {
+  margin: .75em 0;
+}
+.instructions ul {
+  padding: 0 0 0 2em;
+}
+.instructions ul li {
+  margin: .25em 0;
+}
+.controls {
+  margin: .5em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.reset-canvas,
+.modal-toggle,
+.github-link {
+    cursor: pointer;
 }
 footer {
     position: absolute;

@@ -8,20 +8,20 @@ const data = [
     {
         title: 'Snake Game',
         date: '20170803',
-        description: 'Create a drawing using arrow keys like the classic snake game',
+        description: 'Create a drawing in a manner akin to the classic game Snake.',
         source: d20170803,
-        instructions: `
-          <p>Arrow keys change direction</p>
-          <p>Keys 0-9 adjust speed</p>
-          <p>Keys -/+ adjust brush size</p>
-          <p>Space bar pauses drawing</p>
-        `,
+        instructions: [
+          "Arrows: Change line direction",
+          "0-9: Adjust speed",
+          "-/+: Adjust brush size",
+          "Space: Pauses/resumes drawing"
+        ],
         author: 'ph'
     },
     {
         title: 'Eraser',
         date: '20170724',
-        description: 'Bouncing rectangle erases drawing of lines which span from x,y coordinate of rectangle to mouse loctation',
+        description: 'Drawn lines span from the x, y coordinate of bouncing rectangle to the mouse\'s current loctation.',
         source: d20170724,
         author: 'ph'
     },
@@ -35,14 +35,14 @@ const data = [
     {
         title: 'Fruit Stripe',
         date: '20170719',
-        description: 'Horizontal bars impede canvas every second while mouse movements generate trail of multicolored rectangles',
+        description: 'Horizontal bars impede canvas every second while mouse movements generate trail of multicolored rectangles.',
         source: d20170719,
         author: 'ph'
     },
     {
         title: 'Oragami Birds',
         date: '20170718',
-        description: 'Mouse movements generate multicolored oragami bird shapes',
+        description: 'Mouse movements generate multicolored oragami birds.',
         source: d20170718,
         author: 'ph'
     }
