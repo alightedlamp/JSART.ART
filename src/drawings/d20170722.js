@@ -1,6 +1,7 @@
 // 20170722 -- PIXELISM
 import getHeight from '../modules/getHeight';
 import getWidth from '../modules/getWidth';
+import draw from '../modules/draw';
 
 const d20170722 = function() {
     const canvas = document.querySelector("canvas");
@@ -23,7 +24,6 @@ const d20170722 = function() {
     let lastY = 0;
 
     let currentColor = '';
-    let lineColor = '';
 
     function setNewOrigin(e) {
         x = e.offsetX;
@@ -49,25 +49,16 @@ const d20170722 = function() {
         cx.fillRect(x, y, w, h);
     }, 1);
 
-    function draw(e) {
-        if (!isDrawing) return;
-
-        cx.beginPath();
-        cx.strokeStyle = lineColor;
-        cx.lineWidth = brushWidth;;
-        cx.moveTo(lastX, lastY);
-        cx.lineTo(e.offsetX, e.offsetY);
-        cx.stroke();
-        [lastX, lastY] = [e.offsetX, e.offsetY];
-    }
-
     canvas.addEventListener('mousedown', function(e) {
         isDrawing = true;
-        lineColor = currentColor;
         [lastX, lastY] = [e.offsetX, e.offsetY];
         setNewOrigin(e);
     });
-    canvas.addEventListener('mousemove', draw);
+    canvas.addEventListener('mousemove', function(e) {
+      if (isDrawing) {
+        [lastX, lastY] = draw(e, cx, canvas, isDrawing, brushWidth, currentColor, lastX, lastY);
+      }
+    });
     canvas.addEventListener('mouseup', () => isDrawing = false);
     canvas.addEventListener('mouseout', () => isDrawing = false);
 }

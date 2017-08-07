@@ -1,13 +1,12 @@
-const draw = function(e, brushWidth) {
-    if (!isDrawing) return;
-
+const draw = function(e, cx, canvas, isDrawing, brushWidth, currentColor, lastX, lastY) {
     cx.beginPath();
     cx.strokeStyle = currentColor;
-    cx.lineWidth = brushWidth;;
+    cx.lineWidth = brushWidth;
     cx.moveTo(lastX, lastY);
     cx.lineTo(e.offsetX, e.offsetY);
     cx.stroke();
-    [lastX, lastY] = [e.offsetX, e.offsetY];
+
+    return [e.offsetX, e.offsetY];
 }
 
 export default draw;
