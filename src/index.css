@@ -204,6 +204,21 @@ div.drawings-list .drawing-thumb:hover h2 {
     border-bottom: 3px dotted aqua;
     transition: .2s;
 }
+div.info-pane {
+  position: absolute;
+  right: 10px;
+  bottom: 20px;
+  width: 200px;
+  z-index: 99;
+  padding: .5em;
+  font-size: .8em;
+  line-height: 1em;
+  background-color: aqua;
+  box-shadow: 5px 5px 0 0 darkblue;
+}
+div.info-pane p {
+  margin: 0;
+}
 footer {
     position: absolute;
     bottom: 0;

@@ -1,7 +1,6 @@
-import React, { Component } from "react";
+import React from "react";
 import { Switch } from "react-router-dom";
 import * as Animated from "animated/lib/targets/react-dom";
-import TransitionGroup from "react-transition-group/TransitionGroup";
 
 export default class AnimatedSwitch extends Switch {
 	constructor(props) {
@@ -12,7 +11,6 @@ export default class AnimatedSwitch extends Switch {
 		}
 
 		if (this.props.location.pathname.includes('/drawing/')) {
-			console.log('drawing path');
 			this.style = {
 				opacity: Animated.template`${this.state.animate}`
 			};
@@ -48,7 +46,6 @@ export default class AnimatedSwitch extends Switch {
 		setTimeout(() => cb(), 175);
 	}
 	render() {
-		console.log(this.style);
 		return (
 			<Animated.div style={this.style} className="animated-page-wrapper">
 				{super.render()}

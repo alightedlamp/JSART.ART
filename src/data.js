@@ -10,6 +10,12 @@ const data = [
         date: '20170803',
         description: 'Create a drawing using arrow keys like the classic snake game',
         source: d20170803,
+        instructions: `
+          <p>Arrow keys change direction</p>
+          <p>Keys 0-9 adjust speed</p>
+          <p>Keys -/+ adjust brush size</p>
+          <p>Space bar pauses drawing</p>
+        `,
         author: 'ph'
     },
     {
@@ -29,7 +35,7 @@ const data = [
     {
         title: 'Fruit Stripe',
         date: '20170719',
-        description: 'Horizontal bars impede canvas every second while mousemovements generate trail of multicolored rectangles',
+        description: 'Horizontal bars impede canvas every second while mouse movements generate trail of multicolored rectangles',
         source: d20170719,
         author: 'ph'
     },

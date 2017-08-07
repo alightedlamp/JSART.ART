@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
-import { Route, matchPath } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import TransitionGroup from 'react-transition-group/TransitionGroup';
 import AnimatedSwitch from "./utils/AnimatedSwitch";
-import { firstChild } from "./utils/helpers";
 
 import TopBar from './components/TopBar';
-import Footer from './components/Footer';
+// import Footer from './components/Footer';
 
 import Home from './pages/Home';
 import DrawingsList from './pages/DrawingsList';

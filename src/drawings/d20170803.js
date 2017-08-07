@@ -21,9 +21,9 @@ const d20170803 = () => {
     let isDrawing = true;
     let frameCount = 0;
 
-    const setBg = () => {
-      canvas.style.backgroundColor = `hsl(${getRandomColor(360, true)}, 75%, 50%)`;
-    }
+    // const setBg = () => {
+    //   canvas.style.backgroundColor = `hsl(${getRandomColor(360, true)}, 75%, 50%)`;
+    // }
 
     const directionKeys = { 37: 'left', 38: 'up', 39: 'right', 40: 'down' }
     const speedKeys = { 49: 2, 50: 4, 51: 6, 52: 8, 53: 10, 54: 12, 55: 14, 56: 16, 57: 18 }

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import * as Animated from "animated/lib/targets/react-dom";
 
+import InfoPane from './InfoPane';
+
 class Drawing extends Component {
   constructor(props) {
     super(props);
@@ -29,19 +31,19 @@ class Drawing extends Component {
   }
   renderDrawing(drawings) {
     let currentDrawing = drawings.filter(d => {
-      return (d.date == this.props.match.params.date);
+      return (d.date === this.props.match.params.date);
     });
     if (currentDrawing.length) {
-      console.log(currentDrawing[0].source);
-      // Can I not set a function as a value in state?
-      // this.setState({ drawing: currentDrawing[0].source });
-      currentDrawing[0].source();
+      this.setState({ drawing: currentDrawing[0] }, function() {
+        this.state.drawing.source();
+      });
     }
   }
   render() {
-    return(
+    return (
       <div className="drawing">
-          <canvas></canvas>
+        <canvas></canvas>
+        <InfoPane drawing={this.state.drawing} />
       </div>
     )
   }
