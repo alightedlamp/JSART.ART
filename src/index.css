@@ -211,7 +211,7 @@ div.info-pane {
   bottom: 20px;
   width: 200px;
   z-index: 99;
-  padding: .5em;
+  padding: 1em;
   font-size: .8em;
   line-height: 1.25em;
   background-color: aqua;
@@ -239,11 +239,13 @@ div.info-pane p.description {
   margin: .25em 0;
 }
 .controls {
-  margin: .5em;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
+/*.controls .spacer {
+  transition: .5s;
+}*/
 .reset-canvas,
 .modal-toggle,
 .github-link {

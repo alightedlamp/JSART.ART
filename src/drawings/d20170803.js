@@ -51,7 +51,9 @@ const d20170803 = () => {
       if (speedKeys.hasOwnProperty(e.keyCode)) {
         speed = speedKeys[e.keyCode];
       }
-      if (e.keyCode === 32) isDrawing = !isDrawing;
+      if (e.keyCode === 32) {
+        isDrawing = !isDrawing;
+      }
     }
 
     const start = () => {

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import * as Animated from "animated/lib/targets/react-dom";
 
-import InfoPane from './InfoPane';
+import InfoPane from '../components/InfoPane';
 
 class Drawing extends Component {
   constructor(props) {

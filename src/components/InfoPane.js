@@ -15,6 +15,9 @@ class InfoPane extends React.Component {
       modalOpen: false
     }
   }
+  componentDidMount() {
+    // move canvas and cx up here and into state
+  }
   toggleModal(modalOpen) {
     modalOpen = !modalOpen;
     this.setState({ modalOpen })
@@ -40,7 +43,7 @@ class InfoPane extends React.Component {
             <p className="description">{description}</p>
             {instructions &&
               <div className="instructions">
-                <h4><em>Instructions</em></h4>
+                <h4><em>Controls:</em></h4>
                 <ul>
                   {instructions.map(function(li, i) {
                     return <li key={i}>{li}</li>
@@ -54,11 +57,11 @@ class InfoPane extends React.Component {
           <div className="reset-canvas">
             <a onClick={() => clearCanvas(cx, canvas)}>Clear</a>
           </div>
-          <div>/</div>
+          <div className="spacer">/</div>
           <div className="modal-toggle">
             <a onClick={() => this.toggleModal(this.state.modalOpen)}>{toggleText}</a>
           </div>
-          <div>/</div>
+          <div className="spacer">/</div>
           <div className="github-link">
             <a href={href}>Source</a>
           </div>

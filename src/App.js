@@ -4,13 +4,11 @@ import TransitionGroup from 'react-transition-group/TransitionGroup';
 import AnimatedSwitch from "./utils/AnimatedSwitch";
 
 import TopBar from './components/TopBar';
-// import Footer from './components/Footer';
 
 import Home from './pages/Home';
 import DrawingsList from './pages/DrawingsList';
+import Drawing from './pages/Drawing';
 import About from './pages/About';
-
-import Drawing from './components/Drawing';
 
 import data from './data';
 
