@@ -1,8 +1,8 @@
-const draw = function(e, cx, canvas, isDrawing, brushWidth, currentColor, lastX, lastY) {
+const draw = function(e, cx, line) {
     cx.beginPath();
-    cx.strokeStyle = currentColor;
-    cx.lineWidth = brushWidth;
-    cx.moveTo(lastX, lastY);
+    cx.strokeStyle = line.currentColor;
+    cx.lineWidth = line.brushWidth;
+    cx.moveTo(line.lastX, line.lastY);
     cx.lineTo(e.offsetX, e.offsetY);
     cx.stroke();
 

@@ -19,11 +19,13 @@ const d20170722 = function() {
     let h = 20;
 
     let isDrawing = false;
-    let brushWidth = 20;
-    let lastX = 0;
-    let lastY = 0;
 
-    let currentColor = '';
+    let line = {
+      brushWidth: 20,
+      currentColor: '',
+      lastX: 0,
+      lastY: 0
+    }
 
     function setNewOrigin(e) {
         x = e.offsetX;
@@ -34,8 +36,8 @@ const d20170722 = function() {
     setInterval(function() {
         if (hue > 360) hue = 0;
         hue++;
-        currentColor = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
-        canvas.style.backgroundColor = currentColor;
+        line.currentColor = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+        canvas.style.backgroundColor = line.currentColor;
     }, 100);
 
     setInterval(function() {
@@ -51,12 +53,12 @@ const d20170722 = function() {
 
     canvas.addEventListener('mousedown', function(e) {
         isDrawing = true;
-        [lastX, lastY] = [e.offsetX, e.offsetY];
+        [line.lastX, line.lastY] = [e.offsetX, e.offsetY];
         setNewOrigin(e);
     });
     canvas.addEventListener('mousemove', function(e) {
       if (isDrawing) {
-        [lastX, lastY] = draw(e, cx, canvas, isDrawing, brushWidth, currentColor, lastX, lastY);
+        [line.lastX, line.lastY] = draw(e, cx, line);
       }
     });
     canvas.addEventListener('mouseup', () => isDrawing = false);
