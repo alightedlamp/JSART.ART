@@ -28,7 +28,7 @@ class InfoPane extends React.Component {
     const description = this.props.drawing.description;
     const instructions = this.props.drawing.instructions || null;
     const source = 'd' + date;
-    const href = 'https://github.com/alightedlamp/JSART.ART/blob/master/src/drawings/' + source + '.js';
+    const href = `https://github.com/alightedlamp/JSART.ART/blob/master/src/drawings/${source}.js`;
 
     const canvas = document.querySelector('canvas');
     const cx = canvas ? canvas.getContext('2d') : null;

@@ -3,9 +3,16 @@ import d20170719 from './drawings/d20170719';
 import d20170722 from './drawings/d20170722';
 import d20170724 from './drawings/d20170724';
 import d20170803 from './drawings/d20170803';
+import d20170904 from './drawings/d20170904';
 
 const data = [
     {
+        title: '',
+        date: '20170904',
+        description: '',
+        source: d20170904,
+        author: 'ph'
+    },    {
         title: 'Snake Game',
         date: '20170803',
         description: 'Create a drawing in a manner akin to the classic game Snake.',
