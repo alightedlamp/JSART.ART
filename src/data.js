@@ -7,12 +7,13 @@ import d20170904 from './drawings/d20170904';
 
 const data = [
     {
-        title: '',
+        title: 'Internet-Expressionism',
         date: '20170904',
-        description: '',
+        description: 'Abstract-Expressionism\'s ecstacy-loving distant future relative',
         source: d20170904,
         author: 'ph'
-    },    {
+    },
+    {
         title: 'Snake Game',
         date: '20170803',
         description: 'Create a drawing in a manner akin to the classic game Snake.',

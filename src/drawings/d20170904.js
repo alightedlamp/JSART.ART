@@ -1,8 +1,6 @@
 // 20170904
 
-
-// green: h75-150
-import getRandomColor from '../modules/getRandomColor';
+import draw from '../modules/draw';
 
 const d20170904 = function() {
   const canvas = document.querySelector('canvas');
@@ -10,28 +8,51 @@ const d20170904 = function() {
 
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
-  canvas.style.backgroundColor = 'hsl(140, 50%, 75%)';
+  canvas.style.backgroundColor = 'hsl(210, 80%, 5%)';
 
   let x, y = 0;
-  let [h, s, l] = [75, 50, 75];
-  let newGreen = 0;
-  let lastGreen = 0;
+  let [h, s, l] = [75, 20, 20];
+  let newColor = 0;
+  let lastColor = 0;
   let newVal = 50;
   let lastVal = 50;
+  let direction = 'more';
+  let isDrawing = false;
 
-  const threshold = 10;
+  cx.lineWidth = 2;
+  // Lets make the drawn lines look silly, why not
+  cx.lineCap = 'round';
 
-  cx.lineWidth = 5;
+  function setNewOrigin(e) {
+    x = e.offsetX;
+    y = e.offsetY;
+    cx.moveTo(x, y);
+  }
 
-  const getANiceGreen = () => {
-    lastGreen = newGreen;
-    newGreen = 0;
+  const getRandomBrightColor = () => {
+    let hue = Math.floor(Math.random() * 360);
+    return `hsl(${hue}, 60%, 50%)`
+  }
 
-    // Pick a new green within range that isn't the same as current green
-    while ((newGreen < 75 || newGreen > 150) || newGreen === lastGreen) {
-      newGreen = getSubtleNewValue(500, 10, 'h');
+  let line = {
+    brushWidth: 10,
+    currentColor: '',
+    lastX: 0,
+    lastY: 0
+  }
+
+  const getNewSubtlyDifferentColor = (colorRangeLow, colorRangeHigh) => {
+    lastColor = newColor;
+    newColor = 0;
+
+    // Pick a new color within range that isn't the same as current color
+    // 1 - 20ish = red
+    // 75 - 150 = greens
+    // 208 - 266 = blues
+    while ((newColor < 208 || newColor > 266) || newColor === lastColor) {
+      newColor = getSubtleNewValue(500, 50, 'h');
     }
-    return newGreen;
+    return newColor;
   }
 
   // Returns new value within threshold for given value type
@@ -49,30 +70,62 @@ const d20170904 = function() {
     }
   }
 
-  const randomInt = (base) => {
-    return Math.floor(Math.random() * base);
+  const randomInt = (base) => Math.floor(Math.random() * base);
+
+  const burst = (e) => {
+    h = getNewSubtlyDifferentColor();
+
+    // Pulsate lightness and saturation within in a good middle range
+    if (s === 80) direction = 'less';
+    if (s === 20) direction = 'more';
+    if (direction === 'less') {
+      s--;
+      l--;
+    }
+    if (direction === 'more') {
+      s++;
+      l++;
+    }
+
+    x = e.offsetX;
+    y = e.offsetY;
+
+    // Make the lines not seem SO hectic
+    if (x % 2 === 0) {
+      cx.strokeStyle = `hsl(${h}, ${s}%, ${l}%)`;
+      cx.beginPath();
+      cx.lineWidth = 2;
+      cx.moveTo(x, y);
+
+      x = randomInt(canvas.height);
+      y = randomInt(canvas.width);
+
+      cx.lineTo(x, y);
+      cx.stroke();
+
+      cx.closePath();
+    }
   }
 
-  const renderFrame = (ms) => {
-    requestAnimationFrame(renderFrame);
-
-    cx.strokeStyle = `hsl(${h}, ${s}%, ${l}%)`;
-    cx.stroke();
-
-    h = getANiceGreen();
-    s = getSubtleNewValue(100, 's');
-    l = getSubtleNewValue(100, 'l');
+  const stopDrawing = () => {
+    isDrawing = false;
+    // Change line color on drawing stop
+    line.currentColor = getRandomBrightColor();
   }
 
-  renderFrame(0);
-
-  canvas.addEventListener('mousemove', function(e) {
-    cx.moveTo(e.offsetX, e.offsetY);
-    x = randomInt((canvas.width));
-    y = randomInt((canvas.height));
-
-    cx.lineTo(x, y);
+  canvas.addEventListener('mousemove', burst);
+  canvas.addEventListener('mousedown', function(e) {
+    isDrawing = true;
+    [line.lastX, line.lastY] = [e.offsetX, e.offsetY];
+    setNewOrigin(e);
   });
+  canvas.addEventListener('mousemove', function(e) {
+    if (isDrawing) {
+      [line.lastX, line.lastY] = draw(e, cx, line);
+    }
+  });
+  canvas.addEventListener('mouseup', stopDrawing);
+  canvas.addEventListener('mouseout', stopDrawing);
 }
 
 export default d20170904;
