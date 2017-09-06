@@ -8,7 +8,6 @@ const d20170904 = function() {
 
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
-  canvas.style.backgroundColor = 'hsl(210, 80%, 5%)';
 
   let x, y = 0;
   let [h, s, l] = [75, 20, 20];
@@ -19,37 +18,32 @@ const d20170904 = function() {
   let direction = 'more';
   let isDrawing = false;
 
-  cx.lineWidth = 2;
-  // Lets make the drawn lines look silly, why not
-  cx.lineCap = 'round';
-
-  function setNewOrigin(e) {
-    x = e.offsetX;
-    y = e.offsetY;
-    cx.moveTo(x, y);
-  }
-
-  const getRandomBrightColor = () => {
-    let hue = Math.floor(Math.random() * 360);
-    return `hsl(${hue}, 60%, 50%)`
-  }
-
+  const ranges = {
+    red: [1, 20],
+    green: [75, 150],
+    blue: [208, 266],
+    purple: [267, 328]
+  };
   let line = {
-    brushWidth: 10,
+    brushWidth: 12,
     currentColor: '',
     lastX: 0,
     lastY: 0
-  }
+  };
 
-  const getNewSubtlyDifferentColor = (colorRangeLow, colorRangeHigh) => {
+  canvas.style.backgroundColor = 'hsl(140, 100%, 75%)';
+  // Lets make the drawn lines look silly, why not
+  cx.lineCap = 'round';
+
+  const randomInt = (base) => Math.floor(Math.random() * base);
+  const getRandomBrightColor = () => `hsl(${Math.floor(Math.random() * 360)}, 60%, 50%)`
+  const getNewSubtlyDifferentColor = () => {
+    let [low, high] = ranges.blue;
     lastColor = newColor;
     newColor = 0;
 
     // Pick a new color within range that isn't the same as current color
-    // 1 - 20ish = red
-    // 75 - 150 = greens
-    // 208 - 266 = blues
-    while ((newColor < 208 || newColor > 266) || newColor === lastColor) {
+    while ((newColor < low || newColor > high) || newColor === lastColor) {
       newColor = getSubtleNewValue(500, 50, 'h');
     }
     return newColor;
@@ -70,8 +64,7 @@ const d20170904 = function() {
     }
   }
 
-  const randomInt = (base) => Math.floor(Math.random() * base);
-
+  // Main drawing function - generates random lines stretching from mouse position to outer edges of canvas
   const burst = (e) => {
     h = getNewSubtlyDifferentColor();
 
@@ -91,10 +84,10 @@ const d20170904 = function() {
     y = e.offsetY;
 
     // Make the lines not seem SO hectic
-    if (x % 2 === 0) {
+    if (x % 4 === 0) {
       cx.strokeStyle = `hsl(${h}, ${s}%, ${l}%)`;
       cx.beginPath();
-      cx.lineWidth = 2;
+      cx.lineWidth = 12;
       cx.moveTo(x, y);
 
       x = randomInt(canvas.height);
@@ -102,22 +95,28 @@ const d20170904 = function() {
 
       cx.lineTo(x, y);
       cx.stroke();
-
       cx.closePath();
+    }
+
+    // Would like this to fill in shapes
+    if (x % 20 === 0) {
+      console.log('filling context');
+      cx.fillStyle = getRandomBrightColor();
+      cx.fill();
     }
   }
 
+  // Lets us do some stuff when the drawing stops, like change the hue range or bg color
   const stopDrawing = () => {
     isDrawing = false;
-    // Change line color on drawing stop
-    line.currentColor = getRandomBrightColor();
   }
 
   canvas.addEventListener('mousemove', burst);
   canvas.addEventListener('mousedown', function(e) {
     isDrawing = true;
+    line.currentColor = getRandomBrightColor();
     [line.lastX, line.lastY] = [e.offsetX, e.offsetY];
-    setNewOrigin(e);
+    cx.moveTo(e.offsetX, e.offsetY);
   });
   canvas.addEventListener('mousemove', function(e) {
     if (isDrawing) {
