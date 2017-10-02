@@ -23,28 +23,25 @@ const d20171002_2 = function(p) {
       x = 50;
     }
     else {
-      x += 10;
+      x += 50;
     }
     if (y > p.height) {
       y = 50;
     }
     else {
-      y += 10;
+      y += 50;
     }
     p.draw = function() {
       p.noStroke();
       p.fill(204, 201, 0);
-      p.rect(x, 150, 50, 50);
+      p.rect(x, y + 10, 50, 50);
     
-      p.fill(204);
-      p.quad(189, 18, 216, 18, 216, 360, 144, 360);
-    
-      p.fill(255);
-      p.ellipse(252, y, 72, 72);
+      p.fill(75, 100, 255);
+      p.ellipse(x + 100, y, 72, 72);
     }
   }
 
-  setInterval(renderDrawing, 1000);
+  setInterval(renderDrawing, 500);
 
   p.mouseClicked = () => [x, y] = [p.mouseX, p.mouseY];
  }

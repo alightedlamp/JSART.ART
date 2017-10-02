@@ -13,7 +13,8 @@ const data = [
         title: 'p5',
         date: '20171002_2',
         usesP5: true,
-        description: '',
+        description: 'p5 test sketch',
+        instructions: ["Click around"],
         source: d20171002_2,
         author: 'ph'
     },
@@ -36,9 +37,10 @@ const data = [
         author: 'ph'
     },
     {
-        title: 'EEEE',
+        title: 'For Pollock',
         date: '20170904',
         description: 'For Pollock',
+        instructions: ["Click to draw"],
         source: d20170904,
         author: 'ph'
     },
