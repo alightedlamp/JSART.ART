@@ -1,16 +1,16 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import TransitionGroup from 'react-transition-group/TransitionGroup';
-import AnimatedSwitch from "./utils/AnimatedSwitch";
+import AnimatedSwitch from "../utils/AnimatedSwitch";
 
-import TopBar from './components/TopBar';
+import TopBar from './TopBar';
 
-import Home from './pages/Home';
-import DrawingsList from './pages/DrawingsList';
-import Drawing from './pages/Drawing';
-import About from './pages/About';
+import Home from '../pages/Home';
+import DrawingsList from '../pages/DrawingsList';
+import Drawing from '../pages/Drawing';
+import About from '../pages/About';
 
-import data from './data';
+import data from '../utils/data';
 
 class App extends Component {
   constructor(props) {

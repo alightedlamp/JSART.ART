@@ -1,11 +1,11 @@
-import d20170718 from './drawings/d20170718';
-import d20170719 from './drawings/d20170719';
-import d20170722 from './drawings/d20170722';
-import d20170724 from './drawings/d20170724';
-import d20170803 from './drawings/d20170803';
-import d20170904 from './drawings/d20170904';
-import d20171001 from './drawings/d20171001';
-import d20171002 from './drawings/d20171002';
+import d20170718 from '../drawings/d20170718';
+import d20170719 from '../drawings/d20170719';
+import d20170722 from '../drawings/d20170722';
+import d20170724 from '../drawings/d20170724';
+import d20170803 from '../drawings/d20170803';
+import d20170904 from '../drawings/d20170904';
+import d20171001 from '../drawings/d20171001';
+import d20171002 from '../drawings/d20171002';
 
 const data = [
     {
