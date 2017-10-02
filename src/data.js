@@ -4,14 +4,22 @@ import d20170722 from './drawings/d20170722';
 import d20170724 from './drawings/d20170724';
 import d20170803 from './drawings/d20170803';
 import d20170904 from './drawings/d20170904';
+import d20171001 from './drawings/d20171001';
 import d20171002 from './drawings/d20171002';
 
 const data = [
     {
-        title: 'Schism',
+        title: 'Afterimage',
         date: '20171002',
-        description: 'Best for drawing infinity signs or triangles.',
+        description: 'Stare at the center of the square and make a drawing.',
         source: d20171002,
+        author: 'ph'
+    },
+    {
+        title: 'Schism',
+        date: '20171001',
+        description: 'Best for drawing infinity signs or triangles.',
+        source: d20171001,
         instructions: [
             "Click: Change origin",
             "Space: Pauses/resumes drawing"

@@ -1,113 +1,69 @@
-import { colors } from '../utils/colors';
+// 20171002
+
+import draw from '../modules/draw';
 
 const d20171002 = function() {
   const canvas = document.querySelector('canvas');
   const cx = canvas.getContext('2d');
+  
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
-  canvas.style.backgroundColor = `${colors.commodoreBg}`;
-
-  // Add a new canvas!
-  // const doppleganger = document.createElement("canvas");
-  // document.querySelector(".drawing").append(doppleganger);
-
-  let drawingOn = true;
-  let lineOn = false;
-  let mouseMoveOn = false;
-
-  let [w, h, x, y] = [canvas.width, canvas.height, 0, 0];
-  let [lastX, lastY] = [0, 1];
-  let [_h, _h2, _s, _l] = [50, 350, 100, 50];
-
-  let barColor = `hsl(${_h}, ${_s}%, ${_l}%)`;
-  // let lineColor = `hsl(${_h2}, ${_s}%, ${_l}%)`
-  let lineColor ='black';
-  cx.fillStyle = barColor;
-  // cx.fillRect(x, y, w, h);
-
-  const repaint = (ms) => {
-    if (drawingOn) requestAnimationFrame(repaint);
-
-    if (!mouseMoveOn) {
-      barColor = 'black';
-      lineColor = `#${colors.commodoreText}`;
-
-      if (y > canvas.height) {
-        y = 150;
-      }
-      if (x > canvas.width) {
-        x = 50;
-      }
-      cx.strokeStyle = lineColor;
-
-      x += 10;
-      y += 10;
-      cx.moveTo(x, y);
-      x += 5;
-      y += 5;
-      
+  canvas.style.backgroundColor = 'white';
+  
+  const line = {
+    brushWidth: 5,
+    currentColor: '',
+    lastX: 0,
+    lastY: 0
+  };
+  cx.lineCap = 'round';
+  
+  let [x, y, W, H] = [50, 150, canvas.width / 2, canvas.height / 2];
+  let isDrawing = false;
+  let intervalLength = 30000;
+  let themes = {
+    redGreen: {
+      color1: 'red',
+      color2: 'lime'
     }
-    cx.fillStyle = barColor;
-    [w, h] = [10, x - canvas.height];
-    cx.fillRect(x, y, w, h);
-    cx.lineTo(x, y);
-    cx.stroke();
-  }
-  repaint();
+  };
+  let currentTheme = themes.redGreen;
 
-  const getNewCoords = (e) => {
-    [lastX, lastY] = [x, y];
-    [x, y] = [e.offsetX, e.offsetY];
+  const setStageA = () => {
+    cx.fillStyle = currentTheme.color2;
+    cx.strokeStyle = currentTheme.color1;
+    cx.fillRect(x, y, W, H);
   }
-  // const changeLineColor = () => {
-  //   if (_h2 > 360) _h2 = 1;
-  //   else _h2 += 10;
-  //   lineColor = `hsl(${_h2 + 1}, ${_s}%, ${_l}%)`;
-  // }
-  const changeBarColor = () => {
-    if (_h > 360) _h = 1;
-    else _h += 10;
-    barColor = `hsl(${_h}, ${_s}%, ${_l}%)`;
+  const setStageB = () => {
+    cx.fillStyle = currentTheme.color1;
+    cx.strokeStyle = currentTheme.color2;
+    cx.fillRect(x, y, W, H);
   }
 
-  const handleMouseMove = (e) => {
-    getNewCoords(e);
-
-    if (!drawingOn) cx.lineTo(x, y);
-    if (lineOn) {
-      cx.moveTo(lastX, lastY);
-      cx.lineTo(x, y);
-      cx.stroke();
-    }
-    lineColor = 'black';
+  const afterImage = () => {
+    setStageB();
+    setTimeout(() => setStageA(), intervalLength / 2);
   }
-  const addMouseMoveHandler = () => canvas.addEventListener('mousemove', handleMouseMove);
-  const removeMouseMoveHandler = () => canvas.removeEventListener('mousemove', handleMouseMove);
 
-  // On click, if the automatic drawing is on, go into 'line mode'
-  const handleClick = (e) => {
-    if (!drawingOn) {
-      // Default is `false`
-      lineOn = !lineOn;
+  const repeater = setInterval(afterImage, intervalLength);
+  setStageA();
+  
 
-      getNewCoords(e);
-      
-      cx.moveTo(x, y);
-      cx.lineTo(lastX, lastY);
-      cx.stroke();
-    }
-    changeBarColor();
-    [lastX, lastY] = [x, y];
-
-    mouseMoveOn = !mouseMoveOn;
-    mouseMoveOn ? addMouseMoveHandler() : removeMouseMoveHandler();
+  const stopDrawing = () => {
+    isDrawing = false;
   }
-  canvas.addEventListener('click', handleClick);
-
-  window.addEventListener('keydown', (e) => {
-    if (e.keyCode === 32) drawingOn = !drawingOn;
-    if (drawingOn) repaint();
+  canvas.addEventListener('mousedown', function(e) {
+    isDrawing = true;
+    [line.lastX, line.lastY] = [e.offsetX, e.offsetY];
+    cx.moveTo(e.offsetX, e.offsetY);
   });
+  canvas.addEventListener('mousemove', function(e) {
+    if (isDrawing) {
+      [line.lastX, line.lastY] = draw(e, cx, line);
+    }
+  });
+  canvas.addEventListener('mouseup', stopDrawing);
+  canvas.addEventListener('mouseout', stopDrawing);
 }
 
 export default d20171002;
