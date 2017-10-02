@@ -1,0 +1,228 @@
+html,
+body,
+#root {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    background-color: #5246D6;
+    color: white;
+}
+body {
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+h1 {}
+h1, h2, h3 {
+    font-weight: normal;
+    font-family: 'Space Mono', monospace;
+}
+h2 {
+    font-size: 1.15em;
+    margin: 0;
+    text-align: center;
+    color: darkblue;
+    font-weight: 200;
+}
+h3 {
+    font-size: .9em;
+    margin-top: 2em;
+    font-weight: normal;
+    text-transform: uppercase;
+    color: #A694FF;
+}
+p {
+    font-family: "Droid Sans", sans-serif;
+    font-size: 1.05em;
+    line-height: 1.45em;
+    color: #A694FF;
+}
+a:link,
+a:active {    
+    color: #A694FF;
+    font-weight: bold;
+}
+a:hover {
+    color: white;
+}
+.name {
+    text-transform: uppercase;
+}
+.App {
+    position: relative;
+    display: flex;
+    flex-flow: column;
+}
+.TopBar {
+    position: fixed;
+    top: 50px;
+    left: 50px;
+    z-index: 99;
+    font-family: "Space Mono";
+    /* background-color: #5246D6; */
+}
+.Links {
+    display: flex;
+    font-size: 2.4em;
+}
+.Links a {
+    text-align: center;
+    text-decoration: none;
+    text-transform: uppercase;
+    margin-right: 50px;
+    color: darkblue;
+    border-bottom: 5px dotted darkblue;
+}
+.Links a:hover {
+    /*left: 345px;*/
+    color: white;
+    transition: .2s;
+    font-style: italic;
+    border-bottom: 5px dotted yellow;
+}
+.animated-page-wrapper {
+    width: 100%;
+    height: 100%;
+}
+.page,
+.page-info,
+.drawing {
+    position: absolute;
+}
+.page,
+.page-info {
+    top: 100px;
+}
+.page {
+    top: 100px;
+    margin: 50px 0 0 50px;
+}
+.drawing {
+    margin: 0;
+    padding: 0;
+}
+.drawing canvas {
+    height: 100%;
+    width: 100%;
+}
+.drawing-title {
+    position: absolute;
+    top: 200px;
+    left: 75px;
+    z-index: 99;
+    color: white;
+}
+.page-info {
+    top: 100px;
+    padding: 2em;
+    width: 600px;
+    margin: 100px 0 0 50px;
+    border-top: 1px solid black;
+    border-left: 1px solid black;
+    box-shadow: 5px 5px 0 0 darkblue;
+}
+div.drawings-list {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+}
+div.drawings-list a {
+    text-decoration: none;
+}
+div.drawings-list .drawing-thumb {
+    width: 150px;
+    height: 150px;
+    display: inner-block;
+    border-top: 1px solid darkblue;
+    border-left: 1px solid darkblue;
+    box-shadow: 5px 5px 0 0 darkblue;
+    padding: 1em;
+    margin: 50px 50px 0 0;
+}
+div.drawings-list .drawing-thumb:hover {
+    box-shadow: 5px 5px 0 0 #A694FF;
+    border-top: 1px solid #A694FF;
+    border-left: 1px solid #A694FF;
+    transition: .2s;
+}
+div.drawings-list .drawing-thumb:hover h2 {
+    padding-top: .5em;
+    /* color: #A694FF; */
+    border-top: 3px dotted darkblue;
+    transition: .2s;
+}
+div.info-pane {
+  position: absolute;
+  color: darkblue;
+  right: 75px;
+  top: 75px;
+  width: 200px;
+  z-index: 99;
+  /* padding: 1em; */
+  font-size: .8em;
+  line-height: 1.25em;
+  background-color: #A694FF;
+  box-shadow: 5px 5px 0 0 darkblue;
+}
+div.info-container {
+    padding: 1em;
+    background-color: darkblue;
+}
+div.info-pane p,
+div.info-pane li,
+div.info-pane h4,
+div.controls {
+    color:white;
+    font-family: 'Space Mono', sans-serif;
+}
+div.info-pane h4 {
+    color:#5246D6;
+    padding-bottom: 3px;
+    border-bottom: 3px dotted #5246D6;
+}
+div.info-pane p {
+    margin: 0;
+}
+div.info-pane a {
+    color: darkblue;
+    text-decoration: none;
+}
+div.info-pane p.description {
+    margin: .75em 0 1.25em 0;
+}
+.instructions {
+    margin: .75em 0;
+}
+.instructions ul {
+    padding: 0 0 0 2em;
+}
+.instructions ul li {
+    margin: .25em 0;
+}
+div.controls {
+    padding: 1em;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.reset-canvas,
+.modal-toggle,
+.github-link {
+    cursor: pointer;
+}
+footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    background-color: red;
+}
+@media (max-width: 500px) {
+    div.info-pane {
+        left: 50px;
+        top: 150px;
+    }
+    div.Links a {
+        flex-direction: column;
+    }
+}

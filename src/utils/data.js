@@ -6,8 +6,17 @@ import d20170803 from '../drawings/d20170803';
 import d20170904 from '../drawings/d20170904';
 import d20171001 from '../drawings/d20171001';
 import d20171002 from '../drawings/d20171002';
+import d20171002_2 from '../drawings/d20171002_2';
 
 const data = [
+    {
+        title: 'p5',
+        date: '20171002_2',
+        usesP5: true,
+        description: '',
+        source: d20171002_2,
+        author: 'ph'
+    },
     {
         title: 'Afterimage',
         date: '20171002',

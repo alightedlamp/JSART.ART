@@ -55,7 +55,7 @@ class DrawingsList extends Component {
     							`
     						};
                 return (
-                  <Link to={`/drawing/${d.date}`} key={d.date}>
+                  <Link to={`/drawing/${d.date}`} key={i}>
                     <Animated.div style={style}>
                       <div className="drawing-thumb" key={i}>
                         <h3>{d.title}</h3>

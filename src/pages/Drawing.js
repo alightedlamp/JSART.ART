@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import * as Animated from "animated/lib/targets/react-dom";
+import P5Wrapper from 'react-p5-wrapper';
 
 import InfoPane from '../components/InfoPane';
 
@@ -35,14 +36,21 @@ class Drawing extends Component {
     });
     if (currentDrawing.length) {
       this.setState({ drawing: currentDrawing[0] }, function() {
-        this.state.drawing.source();
+        if (!this.state.drawing.usesP5) this.state.drawing.source();
       });
     }
   }
   render() {
+    let drawingComponent;
+    if (this.state.drawing.usesP5) {
+      drawingComponent = <P5Wrapper sketch={this.state.drawing.source} />
+    }
+    else {
+      drawingComponent = <canvas></canvas>
+    }
     return (
       <div className="drawing">
-        <canvas></canvas>
+        {drawingComponent}
         <InfoPane drawing={this.state.drawing} />
       </div>
     )
