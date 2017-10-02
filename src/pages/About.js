@@ -6,8 +6,8 @@ class About extends Component {
   return (
     <div>
         <div className="page-info">
-          <p>2017 &mdash; Present</p>
-          <p>A series of drawings built with JavaScript. The intention is for these to be one part user-interaction, one-part program intervention.</p>
+          <h3>2017 &mdash; Present</h3>
+          <p>A series of drawings by Philip Harrell built with JavaScript that are part user-interaction, part program-intervention.</p>
       </div>
    </div>
   )

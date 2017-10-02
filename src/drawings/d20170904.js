@@ -24,7 +24,7 @@ const d20170904 = function() {
     blue: [208, 266],
     purple: [267, 328]
   };
-  let line = {
+  const line = {
     brushWidth: 12,
     currentColor: '',
     lastX: 0,
@@ -36,7 +36,8 @@ const d20170904 = function() {
   cx.lineCap = 'round';
 
   const randomInt = (base) => Math.floor(Math.random() * base);
-  const getRandomBrightColor = () => `hsl(${Math.floor(Math.random() * 360)}, 60%, 50%)`
+  const getRandomBrightColor = () => `hsl(${Math.floor(Math.random() * 360)}, 60%, 50%)`;
+  // This and the next function could be combined, no?
   const getNewSubtlyDifferentColor = () => {
     let [low, high] = ranges.blue;
     lastColor = newColor;

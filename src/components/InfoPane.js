@@ -36,38 +36,42 @@ class InfoPane extends React.Component {
     const toggleText = this.state.modalOpen ? 'Close' : 'Info';
 
     return(
-      <div className="info-pane">
-        {this.state.modalOpen &&
-          <div className="info-drawing">
-            <h4>{title} / {date}</h4>
-            <p className="description">{description}</p>
-            {instructions &&
-              <div className="instructions">
-                <h4><em>Controls:</em></h4>
-                <ul>
-                  {instructions.map(function(li, i) {
-                    return <li key={i}>{li}</li>
-                  })}
-                </ul>
+      <div className="info-pane-container">
+        <div className="info-pane">
+          <div className="controls">
+            <div className="reset-canvas">
+              <a onClick={() => clearCanvas(cx, canvas)}>Clear</a>
+            </div>
+            <div className="spacer">/</div>
+            <div className="modal-toggle">
+              <a onClick={() => this.toggleModal(this.state.modalOpen)}>{toggleText}</a>
+            </div>
+            <div className="spacer">/</div>
+            <div className="github-link">
+              <a href={href}>Source</a>
+            </div>
+          </div>
+          {this.state.modalOpen &&
+            <div className="info-container">
+              <div className="info-drawing">
+                <h4>{title} / {date}</h4>
+                <p className="description">{description}</p>
+                {instructions &&
+                  <div className="instructions">
+                    <h4><em>Controls:</em></h4>
+                    <ul>
+                      {instructions.map(function(li, i) {
+                        return <li key={i}>{li}</li>
+                      })}
+                    </ul>
+                  </div>
+                }
               </div>
-            }
-          </div>
-        }
-        <div className="controls">
-          <div className="reset-canvas">
-            <a onClick={() => clearCanvas(cx, canvas)}>Clear</a>
-          </div>
-          <div className="spacer">/</div>
-          <div className="modal-toggle">
-            <a onClick={() => this.toggleModal(this.state.modalOpen)}>{toggleText}</a>
-          </div>
-          <div className="spacer">/</div>
-          <div className="github-link">
-            <a href={href}>Source</a>
-          </div>
+            </div>
+          }
         </div>
       </div>
-    )
+      )
   }
 }
 

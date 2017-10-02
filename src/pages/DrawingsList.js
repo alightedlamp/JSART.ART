@@ -58,6 +58,7 @@ class DrawingsList extends Component {
                   <Link to={`/drawing/${d.date}`} key={d.date}>
                     <Animated.div style={style}>
                       <div className="drawing-thumb" key={i}>
+                        <h3>{d.title}</h3>
                         <h2>{d.date}</h2>
                       </div>
                     </Animated.div>

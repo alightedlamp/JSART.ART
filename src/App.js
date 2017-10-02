@@ -32,7 +32,13 @@ class App extends Component {
         <Route render={({ location }) => (
           <TransitionGroup component="main">
             <AnimatedSwitch key={location.key} location={location}>
-              <Route exact path="/" component={Home}/>
+              <Route
+                exact
+                path="/"
+                render={props => (
+                  <DrawingsList {...props} drawings={this.state.drawings}/>
+                )}
+              />
               <Route
                 exact
                 path="/drawings"
