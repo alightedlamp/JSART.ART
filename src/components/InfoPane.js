@@ -2,11 +2,6 @@ import React from 'react';
 
 import clearCanvas from '../modules/clearCanvas';
 
-// import triangle_up from '../svg/icons/triangle_up.svg';
-// import triangle_down from '../svg/icons/triangle_down.svg';
-// import trashcan from '../svg/icons/trashcan.svg';
-// import github from '../svg/social/github.svg';
-
 class InfoPane extends React.Component {
   constructor() {
     super();
@@ -14,9 +9,6 @@ class InfoPane extends React.Component {
     this.state = {
       modalOpen: false
     }
-  }
-  componentDidMount() {
-    // move canvas and cx up here and into state
   }
   toggleModal(modalOpen) {
     modalOpen = !modalOpen;
@@ -60,9 +52,7 @@ class InfoPane extends React.Component {
                   <div className="instructions">
                     <h4><em>Controls:</em></h4>
                     <ul>
-                      {instructions.map(function(li, i) {
-                        return <li key={i}>{li}</li>
-                      })}
+                      {instructions.map((li, i) => <li key={i}>{li}</li>)}
                     </ul>
                   </div>
                 }

@@ -59,64 +59,16 @@ a:hover {
     left: 50px;
     z-index: 99;
     font-family: "Space Mono";
-    background-color: #5246D6;
+    /* background-color: #5246D6; */
 }
-.Title {
-    width: 100%;
+.Links {
     display: flex;
-    flex-flow: row nowrap;
-    align-items: center;
+    font-size: 2.4em;
 }
-.title-dot {
-    color: white;
-}
-.title-a {
-    color: red;
-}
-.title-r {
-    color: yellow;
-}
-.title-t {
-    color: cyan;
-}
-.Title .title-bg {
-    background-color: darkblue;
-    padding: 1em;
-    width: 200px;
-    height: 50px;
-    font-style: italic;
-    opacity: .7;
-    box-shadow: 5px 5px 0 0 black;
-}
-.Title .title-text a {
-    position: fixed;
-    color: white;
-    z-index: 99;
-    top: 38px;
-    left: 65px;
-    font-size: 1.15em;
-    text-decoration: none;
-}
-.Title .title-text a:hover {
-    font-style: italic;
-    left: 60px;
-    traisition: .2s;
-}
-
-.Title a,
 .Links a {
     text-align: center;
     text-decoration: none;
     text-transform: uppercase;
-}
-.Links {
-    display: flex;
-    position: fixed;
-    left: 50px;
-    top: 60px;
-    font-size: 2.4em;
-}
-.Links a {
     margin-right: 50px;
     color: darkblue;
     border-bottom: 5px dotted darkblue;
@@ -127,20 +79,6 @@ a:hover {
     transition: .2s;
     font-style: italic;
     border-bottom: 5px dotted yellow;
-}
-.back-link {
-    position: absolute;
-    z-index: 99;
-    top: 150px;
-    left: 50px;
-    color: white;
-    font-size: 2em;
-}
-.back-link a {
-    cursor: pointer;
-}
-.back-link a:hover {
-    color: #A694FF;
 }
 .animated-page-wrapper {
     width: 100%;
@@ -160,7 +98,6 @@ a:hover {
     margin: 50px 0 0 50px;
 }
 .drawing {
-    /*top: -10px;*/
     margin: 0;
     padding: 0;
 }
@@ -227,9 +164,6 @@ div.info-pane {
   background-color: #A694FF;
   box-shadow: 5px 5px 0 0 darkblue;
 }
-div.controls {
-    padding: 1em;
-}
 div.info-container {
     padding: 1em;
     background-color: darkblue;
@@ -238,8 +172,8 @@ div.info-pane p,
 div.info-pane li,
 div.info-pane h4,
 div.controls {
-  color:white;
-  font-family: 'Space Mono', sans-serif;
+    color:white;
+    font-family: 'Space Mono', sans-serif;
 }
 div.info-pane h4 {
     color:#5246D6;
@@ -247,32 +181,31 @@ div.info-pane h4 {
     border-bottom: 3px dotted #5246D6;
 }
 div.info-pane p {
-  margin: 0;
+    margin: 0;
 }
 div.info-pane a {
     color: darkblue;
     text-decoration: none;
 }
 div.info-pane p.description {
-  margin: .75em 0 1.25em 0;
+    margin: .75em 0 1.25em 0;
 }
 .instructions {
-  margin: .75em 0;
+    margin: .75em 0;
 }
 .instructions ul {
-  padding: 0 0 0 2em;
+    padding: 0 0 0 2em;
 }
 .instructions ul li {
-  margin: .25em 0;
+    margin: .25em 0;
 }
-.controls {
+div.controls {
+    padding: 1em;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-/*.controls .spacer {
-  transition: .5s;
-}*/
+
 .reset-canvas,
 .modal-toggle,
 .github-link {

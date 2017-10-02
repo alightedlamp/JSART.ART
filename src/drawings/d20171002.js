@@ -70,7 +70,7 @@ const d20171002 = function() {
     barColor = `hsl(${_h}, ${_s}%, ${_l}%)`;
   }
 
-  const moveToMouse = (e) => {
+  const handleMouseMove = (e) => {
     getNewCoords(e);
 
     if (!drawingOn) cx.lineTo(x, y);
@@ -81,8 +81,8 @@ const d20171002 = function() {
     }
     lineColor = 'black';
   }
-  const addMouseMove = () => canvas.addEventListener('mousemove', moveToMouse);
-  const removeMouseMove = () => canvas.removeEventListener('mousemove', moveToMouse);
+  const addMouseMoveHandler = () => canvas.addEventListener('mousemove', handleMouseMove);
+  const removeMouseMoveHandler = () => canvas.removeEventListener('mousemove', handleMouseMove);
 
   // On click, if the automatic drawing is on, go into 'line mode'
   const handleClick = (e) => {
@@ -100,7 +100,7 @@ const d20171002 = function() {
     [lastX, lastY] = [x, y];
 
     mouseMoveOn = !mouseMoveOn;
-    mouseMoveOn ? addMouseMove() : removeMouseMove();
+    mouseMoveOn ? addMouseMoveHandler() : removeMouseMoveHandler();
   }
   canvas.addEventListener('click', handleClick);
 
