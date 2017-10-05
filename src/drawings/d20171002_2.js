@@ -1,20 +1,13 @@
 // d20171002_2
-// First experiment withe the p5 library
+// First experiment with the p5 library
 
 const d20171002_2 = function(p) {
-  let rotation = 0;
   let [W, H] = [window.innerWidth, window.innerHeight];
   let [x, y] = [0, 0];
   
   p.setup = function () {
     const canvas = p.createCanvas(W, H);
     canvas.background(153);
-  };
-
-  p.myCustomRedrawAccordingToNewPropsHandler = function (props) {
-    if (props.rotation){
-      rotation = props.rotation * Math.PI / 180;
-    }
   };
   
   p.mouseDragged = () => {

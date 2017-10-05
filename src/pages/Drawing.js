@@ -41,13 +41,10 @@ class Drawing extends Component {
     }
   }
   render() {
-    let drawingComponent;
-    if (this.state.drawing.usesP5) {
-      drawingComponent = <P5Wrapper sketch={this.state.drawing.source} />
-    }
-    else {
-      drawingComponent = <canvas></canvas>
-    }
+    const drawingComponent = this.state.drawing.usesP5
+      ? <P5Wrapper sketch={this.state.drawing.source} />
+      : <canvas></canvas>;
+      
     return (
       <div className="drawing">
         {drawingComponent}

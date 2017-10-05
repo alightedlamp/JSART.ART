@@ -3,6 +3,7 @@
 import draw from '../modules/draw';
 
 const d20171002 = function() {
+  console.log('drawing executed');
   const canvas = document.querySelector('canvas');
   const cx = canvas.getContext('2d');
   
@@ -25,6 +26,10 @@ const d20171002 = function() {
     redGreen: {
       color1: 'red',
       color2: 'lime'
+    },
+    blackWhite: {
+      color1: 'black',
+      color2: 'white'
     }
   };
   let currentTheme = themes.redGreen;
@@ -48,10 +53,7 @@ const d20171002 = function() {
   const repeater = setInterval(afterImage, intervalLength);
   setStageA();
   
-
-  const stopDrawing = () => {
-    isDrawing = false;
-  }
+  const stopDrawing = () => isDrawing = false;
   canvas.addEventListener('mousedown', function(e) {
     isDrawing = true;
     [line.lastX, line.lastY] = [e.offsetX, e.offsetY];

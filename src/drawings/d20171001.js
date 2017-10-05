@@ -5,7 +5,8 @@ const d20171002 = function() {
   const cx = canvas.getContext('2d');
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
-  canvas.style.backgroundColor = `${colors.commodoreBg}`;
+  // canvas.style.backgroundColor = `${colors.commodoreBg}`;
+  canvas.style.backgroundColor = 'red';
 
   // Add a new canvas!
   // const doppleganger = document.createElement("canvas");
@@ -19,33 +20,34 @@ const d20171002 = function() {
   let [lastX, lastY] = [0, 1];
   let [_h, _h2, _s, _l] = [50, 350, 100, 50];
 
-  let barColor = `hsl(${_h}, ${_s}%, ${_l}%)`;
-  // let lineColor = `hsl(${_h2}, ${_s}%, ${_l}%)`
+  const getNewLineColor = () => {
+    _h2 = _h2 > 360 ? _h2 = 1 : _h2 += 10;
+    return `hsl(${_h2 + 1}, ${_s}%, ${_l}%)`;
+  }
+  const getNewBarColor = () => {
+    _h = _h > 360 ? _h = 1 :_h += 10;
+    return `hsl(${_h}, ${_s}%, ${_l}%)`;
+  }
+  let barColor = getNewBarColor();
+  // let lineColor = getNewLineColor();
   let lineColor ='black';
   cx.fillStyle = barColor;
   // cx.fillRect(x, y, w, h);
 
+  const getNewX = (start, incrementor) => x > canvas.width ? start : x + incrementor;
+  const getNewY = (start, incrementor) => y > canvas.height ? start : y + incrementor;
+  
   const repaint = (ms) => {
     if (drawingOn) requestAnimationFrame(repaint);
-
+    
     if (!mouseMoveOn) {
       barColor = 'black';
       lineColor = `#${colors.commodoreText}`;
-
-      if (y > canvas.height) {
-        y = 150;
-      }
-      if (x > canvas.width) {
-        x = 50;
-      }
-      cx.strokeStyle = lineColor;
-
-      x += 10;
-      y += 10;
-      cx.moveTo(x, y);
-      x += 5;
-      y += 5;
       
+      [x, y] = [getNewX(0, 10), getNewY(0, 10)];
+      cx.strokeStyle = lineColor;
+      cx.moveTo(x, y);
+      [x, y] = [getNewX(0, 5), getNewY(0, 5)];
     }
     cx.fillStyle = barColor;
     [w, h] = [10, x - canvas.height];
@@ -53,25 +55,14 @@ const d20171002 = function() {
     cx.lineTo(x, y);
     cx.stroke();
   }
-  repaint();
-
-  const getNewCoords = (e) => {
+  repaint(0);
+  
+  const getNewMouseCoords = (e) => {
     [lastX, lastY] = [x, y];
     [x, y] = [e.offsetX, e.offsetY];
   }
-  // const changeLineColor = () => {
-  //   if (_h2 > 360) _h2 = 1;
-  //   else _h2 += 10;
-  //   lineColor = `hsl(${_h2 + 1}, ${_s}%, ${_l}%)`;
-  // }
-  const changeBarColor = () => {
-    if (_h > 360) _h = 1;
-    else _h += 10;
-    barColor = `hsl(${_h}, ${_s}%, ${_l}%)`;
-  }
-
   const handleMouseMove = (e) => {
-    getNewCoords(e);
+    getNewMouseCoords(e);
 
     if (!drawingOn) cx.lineTo(x, y);
     if (lineOn) {
@@ -90,23 +81,22 @@ const d20171002 = function() {
       // Default is `false`
       lineOn = !lineOn;
 
-      getNewCoords(e);
+      getNewMouseCoords(e);
       
       cx.moveTo(x, y);
       cx.lineTo(lastX, lastY);
       cx.stroke();
     }
-    changeBarColor();
+    barColor = getNewBarColor();
     [lastX, lastY] = [x, y];
 
     mouseMoveOn = !mouseMoveOn;
     mouseMoveOn ? addMouseMoveHandler() : removeMouseMoveHandler();
   }
   canvas.addEventListener('click', handleClick);
-
   window.addEventListener('keydown', (e) => {
     if (e.keyCode === 32) drawingOn = !drawingOn;
-    if (drawingOn) repaint();
+    if (drawingOn) repaint(0, 'black');
   });
 }
 

@@ -92,10 +92,7 @@ a:hover {
 .page,
 .page-info {
     top: 100px;
-}
-.page {
-    top: 100px;
-    margin: 50px 0 0 50px;
+    margin: 50px 0 5em 50px;
 }
 .drawing {
     margin: 0;
@@ -116,7 +113,8 @@ a:hover {
     top: 100px;
     padding: 2em;
     width: 600px;
-    margin: 100px 0 0 50px;
+    margin-top: 100px;
+    margin-right: 50px;
     border-top: 1px solid black;
     border-left: 1px solid black;
     box-shadow: 5px 5px 0 0 darkblue;
@@ -125,9 +123,14 @@ div.drawings-list {
     display: flex;
     flex-flow: row wrap;
     align-items: center;
+    /* margin-bottom: 5em; */
 }
 div.drawings-list a {
     text-decoration: none;
+}
+div.drawings-list .drawing-thumb canvas {
+    width: 150px;
+    height: 150px;
 }
 div.drawings-list .drawing-thumb {
     width: 150px;
