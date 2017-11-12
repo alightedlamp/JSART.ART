@@ -1,16 +1,14 @@
 // 20171002
-
+import { setupCanvas } from '../utils/helpers';
 import draw from '../modules/draw';
 
 const d20171002 = function() {
-  console.log('drawing executed');
-  const canvas = document.querySelector('canvas');
-  const cx = canvas.getContext('2d');
-  
+  const [canvas, cx] = setupCanvas();
+
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
   canvas.style.backgroundColor = 'white';
-  
+
   const line = {
     brushWidth: 5,
     currentColor: '',
@@ -18,7 +16,7 @@ const d20171002 = function() {
     lastY: 0
   };
   cx.lineCap = 'round';
-  
+
   let [x, y, W, H] = [50, 150, canvas.width / 2, canvas.height / 2];
   let isDrawing = false;
   let intervalLength = 30000;
@@ -38,22 +36,22 @@ const d20171002 = function() {
     cx.fillStyle = currentTheme.color2;
     cx.strokeStyle = currentTheme.color1;
     cx.fillRect(x, y, W, H);
-  }
+  };
   const setStageB = () => {
     cx.fillStyle = currentTheme.color1;
     cx.strokeStyle = currentTheme.color2;
     cx.fillRect(x, y, W, H);
-  }
+  };
 
   const afterImage = () => {
     setStageB();
     setTimeout(() => setStageA(), intervalLength / 2);
-  }
+  };
 
   const repeater = setInterval(afterImage, intervalLength);
   setStageA();
-  
-  const stopDrawing = () => isDrawing = false;
+
+  const stopDrawing = () => (isDrawing = false);
   canvas.addEventListener('mousedown', function(e) {
     isDrawing = true;
     [line.lastX, line.lastY] = [e.offsetX, e.offsetY];
@@ -66,6 +64,6 @@ const d20171002 = function() {
   });
   canvas.addEventListener('mouseup', stopDrawing);
   canvas.addEventListener('mouseout', stopDrawing);
-}
+};
 
 export default d20171002;

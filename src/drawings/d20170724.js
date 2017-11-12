@@ -1,10 +1,11 @@
 // 20170724 -- ERASER
+import { setupCanvas } from '../utils/helpers';
+
 import getHeight from '../modules/getHeight';
 import getWidth from '../modules/getWidth';
 
 const d20170724 = function() {
-  const canvas = document.querySelector('canvas');
-  const cx = canvas.getContext('2d');
+  const [canvas, cx] = setupCanvas();
 
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
@@ -33,12 +34,12 @@ const d20170724 = function() {
     hue = ac.currentTime;
 
     if (x === 0) directionX = 'right';
-    if (x > (canvas.width - h)) directionX = 'left';
+    if (x > canvas.width - h) directionX = 'left';
     if (directionX === 'right') x++;
     else x--;
 
     if (y === 0) directionY = 'down';
-    if (y > (canvas.height - w)) directionY = 'up';
+    if (y > canvas.height - w) directionY = 'up';
     if (directionY === 'up') y--;
     else y++;
 
@@ -64,6 +65,6 @@ const d20170724 = function() {
 
   setInterval(rectangleBounce, 10);
   canvas.addEventListener('mousemove', drawLines);
-}
+};
 
 export default d20170724;

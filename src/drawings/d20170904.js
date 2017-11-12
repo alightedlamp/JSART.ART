@@ -1,15 +1,15 @@
 // 20170904
-
+import { setupCanvas } from '../utils/helpers';
 import draw from '../modules/draw';
 
 const d20170904 = function() {
-  const canvas = document.querySelector('canvas');
-  const cx = canvas.getContext('2d');
+  const [canvas, cx] = setupCanvas();
 
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 
-  let x, y = 0;
+  let x,
+    y = 0;
   let [h, s, l] = [75, 20, 20];
   let newColor = 0;
   let lastColor = 0;
@@ -35,8 +35,9 @@ const d20170904 = function() {
   // Lets make the drawn lines look silly, why not
   cx.lineCap = 'round';
 
-  const randomInt = (base) => Math.floor(Math.random() * base);
-  const getRandomBrightColor = () => `hsl(${Math.floor(Math.random() * 360)}, 60%, 50%)`;
+  const randomInt = base => Math.floor(Math.random() * base);
+  const getRandomBrightColor = () =>
+    `hsl(${Math.floor(Math.random() * 360)}, 60%, 50%)`;
   // This and the next function could be combined, no?
   const getNewSubtlyDifferentColor = () => {
     let [low, high] = ranges.blue;
@@ -44,11 +45,11 @@ const d20170904 = function() {
     newColor = 0;
 
     // Pick a new color within range that isn't the same as current color
-    while ((newColor < low || newColor > high) || newColor === lastColor) {
+    while (newColor < low || newColor > high || newColor === lastColor) {
       newColor = getSubtleNewValue(500, 50, 'h');
     }
     return newColor;
-  }
+  };
 
   // Returns new value within threshold for given value type
   const getSubtleNewValue = (base, threshold, type) => {
@@ -59,14 +60,13 @@ const d20170904 = function() {
       }
       lastVal = newVal;
       return newVal;
+    } else if (type === 'h') {
+      return randomInt(base);
     }
-    else if (type === 'h') {
-      return randomInt(base)
-    }
-  }
+  };
 
   // Main drawing function - generates random lines stretching from mouse position to outer edges of canvas
-  const burst = (e) => {
+  const burst = e => {
     h = getNewSubtlyDifferentColor();
 
     // Pulsate lightness and saturation within in a good middle range
@@ -105,12 +105,12 @@ const d20170904 = function() {
       cx.fillStyle = getRandomBrightColor();
       cx.fill();
     }
-  }
+  };
 
   // Lets us do some stuff when the drawing stops, like change the hue range or bg color
   const stopDrawing = () => {
     isDrawing = false;
-  }
+  };
 
   canvas.addEventListener('mousemove', burst);
   canvas.addEventListener('mousedown', function(e) {
@@ -126,6 +126,6 @@ const d20170904 = function() {
   });
   canvas.addEventListener('mouseup', stopDrawing);
   canvas.addEventListener('mouseout', stopDrawing);
-}
+};
 
 export default d20170904;
