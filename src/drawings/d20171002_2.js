@@ -6,8 +6,6 @@ const sketch = function(p5) {
   let [W, H] = [window.innerWidth, window.innerHeight];
   let [x, y] = [0, 0];
 
-  window.p5 = p5;
-
   p5.setup = () => {
     const canvas = p5.createCanvas(W, H);
     canvas.background(153);

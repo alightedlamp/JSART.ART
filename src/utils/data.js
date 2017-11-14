@@ -8,13 +8,21 @@ import d20171001 from '../drawings/d20171001';
 import d20171002 from '../drawings/d20171002';
 import d20171002_2 from '../drawings/d20171002_2';
 import d20171112 from '../drawings/d20171112';
+import d20171112_2 from '../drawings/d20171112_2';
 
 const data = [
+  {
+    title: 'Wireframe Cube Brush',
+    date: '20171112_2',
+    description:
+      'Gives you a simple wireframe cube brush with which you can make drawings',
+    source: d20171112_2,
+    author: 'ph'
+  },
   {
     title: 'three',
     date: '20171112',
     description: 'three test sketch',
-    instructions: ['Click around'],
     source: d20171112,
     author: 'ph'
   },
