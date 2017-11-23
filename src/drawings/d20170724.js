@@ -11,10 +11,10 @@ const d20170724 = function() {
   canvas.height = window.innerHeight;
   canvas.style.backgroundColor = 'blue';
 
-  let [x, y] = [getWidth(), getHeight()];
+  let [x, y] = [0, 0];
+  let [xspeed, yspeed] = [1, 1];
   let [lastX, lastY] = [x, y];
   let [w, h] = [50, 50];
-  let [directionX, directionY] = ['left', 'up'];
   let [hue, saturation, lightness] = ['', 75, 50];
 
   const audioLoop = new Audio('../audio/20170710_pawsweat.wav');
@@ -33,15 +33,15 @@ const d20170724 = function() {
   function rectangleBounce() {
     hue = ac.currentTime;
 
-    if (x === 0) directionX = 'right';
-    if (x > canvas.width - h) directionX = 'left';
-    if (directionX === 'right') x++;
-    else x--;
+    x = x + xspeed;
+    y = y + yspeed;
 
-    if (y === 0) directionY = 'down';
-    if (y > canvas.height - w) directionY = 'up';
-    if (directionY === 'up') y--;
-    else y++;
+    if (x < 0 || x > canvas.width - h) {
+      xspeed *= -1;
+    }
+    if (y < 0 || y > canvas.height - w) {
+      yspeed *= -1;
+    }
 
     cx.clearRect(lastX, lastY, w, h);
     cx.fillStyle = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
