@@ -47,6 +47,8 @@ Make art.
 
 * [React](http://www.dropwizard.io/1.0.2/docs/)
 * [AnimatedJS](https://github.com/animatedjs/animated)
+* p5
+* ThreeJS
 
 ## Contributing
 
